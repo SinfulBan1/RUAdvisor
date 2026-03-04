@@ -1,2 +1,22 @@
+modules = ["nodejs-20", "python-3.11"]
 [agent]
 expertMode = true
+
+run = "python3 main.py"
+
+[workflows]
+
+[[workflows.workflow]]
+name = "run"
+mode = "sequential"
+author = 54616471
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd week4-starter/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 main.py"
+
+[nix]

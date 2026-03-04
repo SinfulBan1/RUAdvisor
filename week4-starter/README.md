@@ -9,7 +9,7 @@ Blueprint AI Fellowship | Spring 2026
 
 2. Install packages in the **Shell** tab:
    ```
-   pip install openai requests
+   pip install llama-index llama-index-llms-groq llama-index-embeddings-voyageai llama-index-vector-stores-pinecone openai voyageai pinecone
    ```
 
 3. Hit the green **Run** button.
