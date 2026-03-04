@@ -5,18 +5,26 @@ expertMode = true
 run = "python3 main.py"
 
 [workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "run"
 
 [[workflows.workflow]]
 name = "run"
-mode = "sequential"
-author = 54616471
+author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd week4-starter/"
+args = "cd week4-starter/ && python3 main.py"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python3 main.py"
+[workflows.workflow.metadata]
+outputType = "console"
 
 [nix]
