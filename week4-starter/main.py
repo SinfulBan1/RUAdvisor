@@ -29,9 +29,9 @@ MODEL = "llama-3.3-70b-versatile"
 # generated the arguments.
 # ============================================================
 
-print("=" * 60)
-print("PART 1: Your First Tool Call")
-print("=" * 60)
+# print("=" * 60)
+# print("PART 1: Your First Tool Call")
+# print("=" * 60)
 
 # Define a tool the LLM can use
 calculator_tool = {
@@ -55,27 +55,27 @@ calculator_tool = {
     }
 }
 
-response = client.chat.completions.create(model=MODEL,
-                                          messages=[{
-                                              "role":
-                                              "user",
-                                              "content":
-                                              "What is 1,847 divided by 23?"
-                                          }],
-                                          tools=[calculator_tool])
-
-message = response.choices[0].message
-
-# The model does NOT answer with text. It requests a tool call.
-print(f"Text content: {message.content}")
-print(f"Tool calls: {message.tool_calls}")
-
-if message.tool_calls:
-    tc = message.tool_calls[0]
-    print(f"\nThe model wants to call: {tc.function.name}")
-    print(f"With arguments: {tc.function.arguments}")
-    print(f"Tool call ID: {tc.id}")
-print()
+# response = client.chat.completions.create(model=MODEL,
+#                                           messages=[{
+#                                               "role":
+#                                               "user",
+#                                               "content":
+#                                               "What is 1,847 divided by 23?"
+#                                           }],
+#                                           tools=[calculator_tool])
+#
+# message = response.choices[0].message
+#
+# # The model does NOT answer with text. It requests a tool call.
+# print(f"Text content: {message.content}")
+# print(f"Tool calls: {message.tool_calls}")
+#
+# if message.tool_calls:
+#     tc = message.tool_calls[0]
+#     print(f"\nThe model wants to call: {tc.function.name}")
+#     print(f"With arguments: {tc.function.arguments}")
+#     print(f"Tool call ID: {tc.id}")
+# print()
 
 # ============================================================
 # PART 2: The Tool Use Loop
@@ -95,49 +95,45 @@ print()
 
 from tools import calculate, calculate_gpa
 
-print("=" * 60)
-print("PART 2: The Tool Use Loop")
-print("=" * 60)
-
-# Step 1: Send message with tools
-response = client.chat.completions.create(
-    model=MODEL,
-    messages=[{
-        "role": "user",
-        "content": "What is 15% tip on a $47.50 bill?"
-    }],
-    tools=[calculator_tool])
-
-message = response.choices[0].message
-print(f"Model wants to call: {message.tool_calls[0].function.name}")
-print(f"Arguments: {message.tool_calls[0].function.arguments}")
+# print("=" * 60)
+# print("PART 2: The Tool Use Loop")
+# print("=" * 60)
 #
-# # Step 2 & 3: Extract the tool call and run the function
-tool_call = message.tool_calls[0]
-args = json.loads(tool_call.function.arguments)
-result = calculate(args["expression"])
-print(f"Function returned: {result}")
-
-# Step 4: Send the result back to the model
-followup = client.chat.completions.create(
-    model=MODEL,
-    messages=[
-        {
-            "role": "user",
-            "content": "What is 15% tip on a $47.50 bill?"
-        },
-        message,  # the model's tool call request
-        {
-            "role": "tool",
-            "tool_call_id": tool_call.id,
-            "content": result
-        }
-    ],
-    tools=[calculator_tool])
-
-# Step 5: Model writes a natural language answer
-print(f"\nFinal answer: {followup.choices[0].message.content}")
-print()
+# response = client.chat.completions.create(
+#     model=MODEL,
+#     messages=[{
+#         "role": "user",
+#         "content": "What is 15% tip on a $47.50 bill?"
+#     }],
+#     tools=[calculator_tool])
+#
+# message = response.choices[0].message
+# print(f"Model wants to call: {message.tool_calls[0].function.name}")
+# print(f"Arguments: {message.tool_calls[0].function.arguments}")
+#
+# tool_call = message.tool_calls[0]
+# args = json.loads(tool_call.function.arguments)
+# result = calculate(args["expression"])
+# print(f"Function returned: {result}")
+#
+# followup = client.chat.completions.create(
+#     model=MODEL,
+#     messages=[
+#         {
+#             "role": "user",
+#             "content": "What is 15% tip on a $47.50 bill?"
+#         },
+#         message,
+#         {
+#             "role": "tool",
+#             "tool_call_id": tool_call.id,
+#             "content": result
+#         }
+#     ],
+#     tools=[calculator_tool])
+#
+# print(f"\nFinal answer: {followup.choices[0].message.content}")
+# print()
 
 # ============================================================
 # PART 3: Multiple Tools
@@ -154,9 +150,9 @@ print()
 
 from tools import TOOL_FUNCTIONS
 
-print("=" * 60)
-print("PART 3: Multiple Tools")
-print("=" * 60)
+# print("=" * 60)
+# print("PART 3: Multiple Tools")
+# print("=" * 60)
 
 # Define both tools
 weather_tool = {
@@ -344,9 +340,9 @@ calendar_tools = [availability_tool, free_slot_tool]
 
 from tools import TOOL_FUNCTIONS
 
-print("=" * 60)
-print("PART 5: Multi-Tool Chaining")
-print("=" * 60)
+# print("=" * 60)
+# print("PART 5: Multi-Tool Chaining")
+# print("=" * 60)
 
 parse_transcript_tool = {
     "type": "function",
@@ -525,13 +521,27 @@ print("Double Major Path Planning")
 print("=" * 60)
 
 import os
-transcript_path = os.path.join(os.path.dirname(__file__), "lib", "transcript.txt")
-with open(transcript_path, "r") as f:
-    transcript_text = f.read()
+import json as _json
+
+parsed_path = os.path.join(os.path.dirname(__file__), "lib", "parsed_transcript.json")
+with open(parsed_path, "r") as f:
+    parsed_transcript = _json.load(f)
+
+completed_courses = []
+in_progress_courses = []
+for term in parsed_transcript["terms"]:
+    for c in term["courses"]:
+        entry = f"{c['subject']}:{c['course_number']} {c['title']}"
+        if c["grade"]:
+            completed_courses.append(f"{entry} (Grade: {c['grade']}, {term['term_name']})")
+        else:
+            in_progress_courses.append(f"{entry} (In Progress, {term['term_name']})")
+
+completed_text = "\n".join(completed_courses)
+in_progress_text = "\n".join(in_progress_courses)
 
 professors_path = os.path.join(os.path.dirname(__file__), "lib", "rutgers_professors.json")
 with open(professors_path, "r") as f:
-    import json as _json
     professors_data = _json.load(f)
 
 cs_ds_professors = [
@@ -550,26 +560,54 @@ top_professors_text = "\n".join(
 
 ask_multi_tool(
     f"""I'm a student at Rutgers University - New Brunswick and I want to double major in
-Computer Science (CS) and Data Science (DS). Based on my transcript below, figure out
-what courses I've already completed and what I still need.
+Computer Science (CS) and Data Science (DS). Based on my completed and in-progress courses
+below, figure out what I still need.
 
-Here are the Rutgers requirements:
-- CS major requires: Intro to CS (198:111), Data Structures (198:112), Discrete Structures I (198:205),
-  Computer Architecture (198:211), Systems Programming (198:214), Intro to AI (198:213) or
-  Design & Analysis of Algorithms (198:344), Linear Algebra (640:250), Calculus I (640:151),
-  Calculus II (640:152), plus 3 CS electives at 300+ level.
-- Data Science major requires: Intro to CS (198:111), Data Structures (198:112),
-  Intro to Data Science (198:142), Data Management (198:210), Regression Methods (960:401),
-  Statistical Computing (960:467), Calculus I (640:151), Calculus II (640:152),
-  Linear Algebra (640:250), Probability & Statistics (960:381), plus 2 DS electives.
+Here are the EXACT Rutgers requirements:
 
-Identify which courses overlap and count toward BOTH majors at once. Then recommend the
-fastest semester-by-semester plan to finish both majors, considering I'm currently in
-Spring 2026. For any required course, look up the professor ratings and suggest the
-highest-rated professor.
+BS IN COMPUTER SCIENCE REQUIREMENTS:
+Core courses:
+- Intro to CS (198:111)
+- Data Structures (198:112)
+- Discrete Structures I (198:205)
+- Discrete Structures II (198:206)
+- Computer Architecture (198:211)
+- Systems Programming (198:214)
+- Intro to AI (198:213) OR Design & Analysis of Algorithms (198:344)
+Math requirements:
+- Calculus I (640:151)
+- Calculus II (640:152)
+- Linear Algebra (640:250)
+Electives: 7 total CS electives (198:xxx courses), of which at least 2 must be at the 300+ level.
 
-MY TRANSCRIPT:
-{transcript_text}
+DATA SCIENCE MAJOR REQUIREMENTS:
+Core courses:
+- Intro to CS (198:111)
+- Data Structures (198:112)
+- Intro to Data Science (198:142)
+- Data Management (198:210)
+- Regression Methods (960:401)
+- Intro to Probability & Statistical Inference (960:381)
+- Statistical Computing (960:467)
+Math requirements:
+- Calculus I (640:151)
+- Calculus II (640:152)
+- Linear Algebra (640:250)
+Electives: 2 DS electives from approved list.
+
+IMPORTANT: Courses that appear in BOTH majors overlap and satisfy both at once. Identify
+ALL overlapping courses. Calculus II (640:152) is required for BOTH majors and has NOT
+been completed yet.
+
+MY COMPLETED COURSES:
+{completed_text}
+
+MY IN-PROGRESS COURSES (Spring 2026):
+{in_progress_text}
+
+Recommend the fastest semester-by-semester plan to finish both majors starting from
+Fall 2026. For each remaining required course, look up the professor ratings and suggest
+the highest-rated professor.
 
 TOP RATED PROFESSORS IN RELEVANT DEPARTMENTS:
 {top_professors_text}""",
