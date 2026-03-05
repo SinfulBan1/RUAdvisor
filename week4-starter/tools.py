@@ -5,6 +5,7 @@ The LLM never sees this code. It only sees the tool schemas (defined in main.py)
 """
 
 import requests
+import json
 from schedule import SCHEDULE
 import re
 from collections import defaultdict
@@ -254,6 +255,57 @@ def reapply_repeat_policy(transcript_json: str) -> str:
         return f"Error applying repeat policy: {e}"
 
 
+import os
+
+_PROFESSORS_CACHE = None
+
+def _load_professors():
+    global _PROFESSORS_CACHE
+    if _PROFESSORS_CACHE is None:
+        path = os.path.join(os.path.dirname(__file__), "lib", "rutgers_professors.json")
+        with open(path, "r") as f:
+            _PROFESSORS_CACHE = json.load(f)
+    return _PROFESSORS_CACHE
+
+
+def lookup_professor(name: str) -> str:
+    """Look up a Rutgers professor by name and return their Rate My Professor info."""
+    professors = _load_professors()
+    name_lower = name.lower().strip()
+    parts = name_lower.split()
+
+    exact = []
+    partial = []
+
+    for prof in professors:
+        first = prof["first_name"].lower()
+        last = prof["last_name"].lower()
+        full = f"{first} {last}"
+
+        if full == name_lower or last == name_lower:
+            exact.append(prof)
+        elif any(p in first or p in last for p in parts):
+            partial.append(prof)
+
+    matches = exact if exact else partial[:10]
+
+    if not matches:
+        return f"No professor found matching '{name}'"
+
+    results = []
+    for p in matches:
+        rating = p["avg_rating"] if p["avg_rating"] > 0 else "N/A"
+        difficulty = p["avg_difficulty"] if p["avg_difficulty"] > 0 else "N/A"
+        wta = f"{p['would_take_again_pct']:.1f}%" if p["would_take_again_pct"] >= 0 else "N/A"
+        results.append(
+            f"{p['first_name']} {p['last_name']} | {p['department']} | "
+            f"Rating: {rating}/5 | Difficulty: {difficulty}/5 | "
+            f"Reviews: {p['num_ratings']} | Would Take Again: {wta}"
+        )
+
+    return "\n".join(results)
+
+
 # Map tool names to functions (used in main.py to dispatch calls)
 TOOL_FUNCTIONS = {
     "calculate": calculate,
@@ -263,4 +315,5 @@ TOOL_FUNCTIONS = {
     "parse_transcript": parse_transcript_tool,
     "calculate_gpa": calculate_gpa_tool,
     "reapply_repeat_policy": reapply_repeat_policy,
+    "lookup_professor": lookup_professor,
 }

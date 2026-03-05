@@ -244,10 +244,10 @@ def ask_with_tools(question, tools, max_retries=3):
 
 
 # Test with different types of questions
-ask_with_tools("What is the weather in New Brunswick, NJ?", all_tools)
-ask_with_tools("What is 234 times 56?", all_tools)
-ask_with_tools("What is the capital of France?", all_tools)
-print()
+# ask_with_tools("What is the weather in New Brunswick, NJ?", all_tools)
+# ask_with_tools("What is 234 times 56?", all_tools)
+# ask_with_tools("What is the capital of France?", all_tools)
+# print()
 
 # ============================================================
 # PART 4: Calendar Tool with Structured Data
@@ -265,9 +265,9 @@ print()
 
 from tools import TOOL_FUNCTIONS
 
-print("=" * 60)
-print("PART 4: Calendar Tools")
-print("=" * 60)
+# print("=" * 60)
+# print("PART 4: Calendar Tools")
+# print("=" * 60)
 
 # Define calendar tools
 availability_tool = {
@@ -321,13 +321,13 @@ calendar_tools = [availability_tool, free_slot_tool]
 
 # Reuse the helper from Part 3 (already defined above with retry logic)
 
-ask_with_tools("Am I free at 3pm on Wednesday?", calendar_tools)
-ask_with_tools("Find me a 60-minute free slot on Tuesday", calendar_tools)
-ask_with_tools("Am I free at 10am on Thursday?", calendar_tools)
-ask_with_tools(
-    "When is my first opening on Monday that is at least 90 minutes?",
-    calendar_tools)
-print()
+# ask_with_tools("Am I free at 3pm on Wednesday?", calendar_tools)
+# ask_with_tools("Find me a 60-minute free slot on Tuesday", calendar_tools)
+# ask_with_tools("Am I free at 10am on Thursday?", calendar_tools)
+# ask_with_tools(
+#     "When is my first opening on Monday that is at least 90 minutes?",
+#     calendar_tools)
+# print()
 
 # ============================================================
 # PART 5: Multi-Tool Chaining
@@ -409,9 +409,28 @@ reapply_repeat_policy_tool = {
     }
 }
 
+lookup_professor_tool = {
+    "type": "function",
+    "function": {
+        "name": "lookup_professor",
+        "description": "Look up a Rutgers University professor on Rate My Professor by name. Returns their rating, difficulty, department, number of reviews, and would-take-again percentage.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The professor's name to search for, e.g. 'Sesh Venugopal' or 'Venugopal'"
+                }
+            },
+            "required": ["name"]
+        }
+    }
+}
+
 all_tools = [
     calculator_tool, weather_tool, availability_tool, free_slot_tool,
-    calculate_gpa_tool, parse_transcript_tool, reapply_repeat_policy_tool
+    calculate_gpa_tool, parse_transcript_tool, reapply_repeat_policy_tool,
+    lookup_professor_tool
 ]
 
 
@@ -460,24 +479,34 @@ def ask_multi_tool(question, tools, max_retries=3):
 
 
 # Questions that need multiple tools
-ask_multi_tool(
-    "Find me a free 60-minute slot on Wednesday and tell me what the weather will be like in New Brunswick",
-    all_tools)
-ask_multi_tool(
-    "Am I free at 2pm on Friday? Also, what is 20% tip on a $85 dinner?",
-    all_tools)
+# ask_multi_tool(
+#     "Find me a free 60-minute slot on Wednesday and tell me what the weather will be like in New Brunswick",
+#     all_tools)
+# ask_multi_tool(
+#     "Am I free at 2pm on Friday? Also, what is 20% tip on a $85 dinner?",
+#     all_tools)
 
 # =============================================
 # GPA Calculation from transcript file
 # =============================================
-import os
+# import os
 
-transcript_path = os.path.join(os.path.dirname(__file__), "lib",
-                               "transcript.txt")
-with open(transcript_path, "r") as f:
-    transcript_text = f.read()
+# transcript_path = os.path.join(os.path.dirname(__file__), "lib",
+#                                "transcript.txt")
+# with open(transcript_path, "r") as f:
+#     transcript_text = f.read()
 
-ask_multi_tool(
-    f"Parse this transcript and calculate my GPA:\n\n{transcript_text}",
-    all_tools)
+# ask_multi_tool(
+#     f"Parse this transcript and calculate my GPA:\n\n{transcript_text}",
+#     all_tools)
+# print()
+
+# =============================================
+# Professor Lookup Test
+# =============================================
+print("=" * 60)
+print("Professor Lookup Test")
+print("=" * 60)
+ask_multi_tool("What are the ratings for Professor Sesh Venugopal at Rutgers?", all_tools)
+ask_multi_tool("Who is a better professor for Computer Science at Rutgers - Fatemeh Hafizi or Arnold Lau?", all_tools)
 print()
