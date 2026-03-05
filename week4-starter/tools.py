@@ -306,7 +306,65 @@ def lookup_professor(name: str) -> str:
     return "\n".join(results)
 
 
-# Map tool names to functions (used in main.py to dispatch calls)
+import os as _os
+
+_REQUIREMENTS_DIR = _os.path.join(_os.path.dirname(__file__), "lib", "requirements")
+_REQUIREMENTS_CACHE: Dict[str, dict] = {}
+
+def _load_requirements():
+    if _REQUIREMENTS_CACHE:
+        return
+    for root, _dirs, files in _os.walk(_REQUIREMENTS_DIR):
+        for fname in files:
+            if fname.endswith(".json"):
+                fpath = _os.path.join(root, fname)
+                rel = _os.path.relpath(fpath, _REQUIREMENTS_DIR)
+                key = rel.replace(_os.sep, "/").replace(".json", "")
+                with open(fpath) as f:
+                    _REQUIREMENTS_CACHE[key] = json.load(f)
+
+def lookup_requirements(department: str, degree_type: str) -> str:
+    _load_requirements()
+
+    dept_map = {
+        "computer science": "cs", "cs": "cs",
+        "data science": "ds", "ds": "ds",
+        "mathematics": "math", "math": "math",
+        "statistics": "stats", "stats": "stats",
+    }
+    degree_map = {
+        "bs": "bs", "b.s.": "bs", "b.s": "bs", "bachelor of science": "bs",
+        "ba": "ba", "b.a.": "ba", "b.a": "ba", "bachelor of arts": "ba",
+        "minor": "minor",
+        "major": "major",
+        "electives": "electives",
+    }
+
+    dept_key = dept_map.get(department.lower().strip())
+    deg_key = degree_map.get(degree_type.lower().strip())
+
+    if not dept_key:
+        available = ", ".join(sorted(set(dept_map.values())))
+        return f"Unknown department '{department}'. Available: {available}"
+    if not deg_key:
+        available = ", ".join(sorted(set(degree_map.values())))
+        return f"Unknown degree type '{degree_type}'. Available: {available}"
+
+    lookup_key = f"{dept_key}/{deg_key}"
+    if lookup_key in _REQUIREMENTS_CACHE:
+        return json.dumps(_REQUIREMENTS_CACHE[lookup_key], indent=2)
+
+    if deg_key == "major":
+        for fallback in ["bs", "ba"]:
+            fallback_key = f"{dept_key}/{fallback}"
+            if fallback_key in _REQUIREMENTS_CACHE:
+                return json.dumps(_REQUIREMENTS_CACHE[fallback_key], indent=2)
+
+    available_keys = [k for k in _REQUIREMENTS_CACHE if k.startswith(dept_key + "/")]
+    available_types = [k.split("/")[1] for k in available_keys]
+    return f"No requirements found for {dept_key}/{deg_key}. Available for {dept_key}: {', '.join(available_types)}"
+
+
 TOOL_FUNCTIONS = {
     "calculate": calculate,
     "get_weather": get_weather,
@@ -316,4 +374,5 @@ TOOL_FUNCTIONS = {
     "calculate_gpa": calculate_gpa_tool,
     "reapply_repeat_policy": reapply_repeat_policy,
     "lookup_professor": lookup_professor,
+    "lookup_requirements": lookup_requirements,
 }

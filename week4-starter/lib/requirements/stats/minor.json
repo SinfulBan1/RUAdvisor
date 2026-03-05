@@ -1,0 +1,26 @@
+{
+  "department": "Statistics",
+  "degree": "Minor",
+  "source_url": "http://statistics.rutgers.edu/minor",
+  "requirements": {
+    "computing_requirement": {
+      "choose_one": [
+        {
+          "code": "01:960:390",
+          "name": "Statistical Computing"
+        },
+        {
+          "code": "01:960:295",
+          "name": "Data Management with R"
+        }
+      ]
+    },
+    "additional_courses": {
+      "total_required": 6,
+      "from": "Department of Statistics courses, or 01:198:142, 01:640:477, or 01:640:481",
+      "constraint": "At least 3 must be from: 01:960:365, 381, 382, 463, 467, 476, 483, 486, 490, 01:640:477, or 01:640:481"
+    },
+    "grade_policy": "At most two grades of D can be counted.",
+    "note": "No one course can fulfill two requirements."
+  }
+}

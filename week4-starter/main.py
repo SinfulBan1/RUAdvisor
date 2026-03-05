@@ -426,10 +426,35 @@ lookup_professor_tool = {
     }
 }
 
+lookup_requirements_tool = {
+    "type": "function",
+    "function": {
+        "name": "lookup_requirements",
+        "description":
+        "Look up Rutgers University major or minor degree requirements. Returns the full structured requirements including required courses, electives, and policies.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "department": {
+                    "type": "string",
+                    "description":
+                    "The department name: 'Computer Science', 'Data Science', 'Mathematics', or 'Statistics'"
+                },
+                "degree_type": {
+                    "type": "string",
+                    "description":
+                    "The degree type: 'BS', 'BA', 'minor', 'major', or 'electives'"
+                }
+            },
+            "required": ["department", "degree_type"]
+        }
+    }
+}
+
 all_tools = [
     calculator_tool, weather_tool, availability_tool, free_slot_tool,
     calculate_gpa_tool, parse_transcript_tool, reapply_repeat_policy_tool,
-    lookup_professor_tool
+    lookup_professor_tool, lookup_requirements_tool
 ]
 
 
@@ -438,7 +463,7 @@ def ask_multi_tool(question, tools, max_retries=3):
     # print(f"\nQ: {question}")
     messages = [{"role": "user", "content": question}]
 
-    max_rounds = 5
+    max_rounds = 10
     for round_num in range(max_rounds):
         for attempt in range(max_retries):
             try:
@@ -560,54 +585,26 @@ top_professors_text = "\n".join(
 
 ask_multi_tool(
     f"""I'm a student at Rutgers University - New Brunswick and I want to double major in
-Computer Science (CS) and Data Science (DS). Based on my completed and in-progress courses
-below, figure out what I still need.
+Computer Science (B.S.) and Data Science (B.S., Computer Science track). Based on my completed
+and in-progress courses below, figure out what I still need.
 
-Here are the EXACT Rutgers requirements:
+STEP 1: Use the lookup_requirements tool to fetch the official requirements for BOTH majors:
+  - Computer Science BS requirements
+  - Data Science BS requirements
+  - Computer Science electives list
 
-BS IN COMPUTER SCIENCE REQUIREMENTS:
-Core courses:
-- Intro to CS (198:111)
-- Data Structures (198:112)
-- Discrete Structures I (198:205)
-- Discrete Structures II (198:206)
-- Computer Architecture (198:211)
-- Systems Programming (198:214)
-- Intro to AI (198:213) OR Design & Analysis of Algorithms (198:344)
-Math requirements:
-- Calculus I (640:151)
-- Calculus II (640:152)
-- Linear Algebra (640:250)
-Electives: 7 total CS electives (198:xxx courses), of which at least 2 must be at the 300+ level.
+STEP 2: Compare my courses against both sets of requirements. Courses that appear in BOTH
+majors overlap and satisfy both at once. Identify ALL overlapping courses.
 
-DATA SCIENCE MAJOR REQUIREMENTS:
-Core courses:
-- Intro to CS (198:111)
-- Data Structures (198:112)
-- Intro to Data Science (198:142)
-- Data Management (198:210)
-- Regression Methods (960:401)
-- Intro to Probability & Statistical Inference (960:381)
-- Statistical Computing (960:467)
-Math requirements:
-- Calculus I (640:151)
-- Calculus II (640:152)
-- Linear Algebra (640:250)
-Electives: 2 DS electives from approved list.
-
-IMPORTANT: Courses that appear in BOTH majors overlap and satisfy both at once. Identify
-ALL overlapping courses. Calculus II (640:152) is required for BOTH majors and has NOT
-been completed yet.
+STEP 3: Recommend the fastest semester-by-semester plan to finish both majors starting from
+Fall 2026. For each remaining required course, look up the professor ratings and suggest
+the highest-rated professor.
 
 MY COMPLETED COURSES:
 {completed_text}
 
 MY IN-PROGRESS COURSES (Spring 2026):
 {in_progress_text}
-
-Recommend the fastest semester-by-semester plan to finish both majors starting from
-Fall 2026. For each remaining required course, look up the professor ratings and suggest
-the highest-rated professor.
 
 TOP RATED PROFESSORS IN RELEVANT DEPARTMENTS:
 {top_professors_text}""",

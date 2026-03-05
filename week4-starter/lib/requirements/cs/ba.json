@@ -1,0 +1,59 @@
+{
+  "department": "Computer Science",
+  "degree": "B.A.",
+  "source_url": "https://www.cs.rutgers.edu/academics/undergraduate/cs-degrees/b-a-degree",
+  "requirements": {
+    "admission": "Admission to the major required.",
+    "required_cs_courses": [
+      {
+        "code": "01:198:111",
+        "name": "Introduction to Computer Science"
+      },
+      {
+        "code": "01:198:112",
+        "name": "Data Structures"
+      },
+      {
+        "code": "01:198:205",
+        "name": "Introduction to Discrete Structures I"
+      },
+      {
+        "code": "01:198:206",
+        "name": "Introduction to Discrete Structures II"
+      },
+      {
+        "code": "01:198:211",
+        "name": "Computer Architecture"
+      },
+      {
+        "code": "01:198:344",
+        "name": "Design and Analysis of Computer Algorithms"
+      }
+    ],
+    "required_math_courses": [
+      {
+        "code": "01:640:151",
+        "name": "Calculus I for Math/Physics"
+      },
+      {
+        "code": "01:640:152",
+        "name": "Calculus II for Math/Physics"
+      },
+      {
+        "code": "01:640:250",
+        "name": "Introductory Linear Algebra"
+      }
+    ],
+    "electives": {
+      "total_required": 5,
+      "from": "designated list of courses in computer science and related disciplines",
+      "constraints": [
+        "At least 3 must be taken in NB CS department (01:198:xxx)",
+        "At least 2 of those 3 must be at the 300 level or above"
+      ]
+    },
+    "grade_policy": "No more than one grade of D can be accepted in courses applied toward the major.",
+    "residency": "At least 7 of the required and elective courses must be 01:198:xxx.",
+    "credit_hours": "53-55 credits"
+  }
+}

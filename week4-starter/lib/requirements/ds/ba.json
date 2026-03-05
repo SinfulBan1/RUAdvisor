@@ -1,0 +1,132 @@
+{
+  "department": "Data Science",
+  "degree": "B.A.",
+  "source_url": "https://ds.sas.rutgers.edu/data-science-program/b-a-in-data-science",
+  "requirements": {
+    "foundational_courses": [
+      {
+        "code": "01:198:142",
+        "name": "Data 101: Data Literacy",
+        "alt_code": "01:960:142"
+      },
+      {
+        "code": "01:960:291",
+        "name": "Statistical Inference for Data Science",
+        "alternatives": [
+          "01:960:212",
+          "01:960:384",
+          "33:136:385"
+        ]
+      },
+      {
+        "code": "01:640:135",
+        "name": "Calculus I",
+        "alt_code": "01:640:151",
+        "note": "CS track students should take 01:640:151"
+      },
+      {
+        "code": "01:640:250",
+        "name": "Introductory Linear Algebra"
+      },
+      {
+        "code": "04:189:220",
+        "name": "Data in Context"
+      }
+    ],
+    "data_management": {
+      "choose_one": [
+        {
+          "code": "01:198:210",
+          "name": "Data Management for Data Science"
+        },
+        {
+          "code": "01:960:295",
+          "name": "Data Management and Wrangling with R"
+        },
+        {
+          "code": "04:547:221",
+          "name": "Fundamentals of Data Curation and Management"
+        }
+      ]
+    },
+    "tracks": {
+      "statistics": {
+        "code": "NB219TJ",
+        "courses": [
+          {
+            "code": "01:640:152",
+            "name": "Calculus II",
+            "alt_code": "01:640:136"
+          },
+          {
+            "code": "01:198:111",
+            "name": "Introduction to Computer Science"
+          },
+          {
+            "code": "01:198:112",
+            "name": "Data Structures"
+          },
+          {
+            "code": "01:960:463",
+            "name": "Regression Methods"
+          },
+          {
+            "code": "01:960:486",
+            "name": "Applied Statistical Learning"
+          }
+        ],
+        "choose_one": [
+          {
+            "code": "01:960:365",
+            "name": "Bayesian Data Analysis"
+          },
+          {
+            "code": "01:960:467",
+            "name": "Applied Multivariate Analysis"
+          },
+          {
+            "code": "01:960:490",
+            "name": "Intro to Experimental Design"
+          }
+        ]
+      },
+      "societal_impact": {
+        "code": "NB219IJ",
+        "courses": [
+          {
+            "code": "01:960:463",
+            "name": "Regression Methods"
+          },
+          {
+            "code": "04:547:321",
+            "name": "Information Visualization"
+          },
+          {
+            "code": "04:547:201",
+            "name": "IT Fundamentals"
+          }
+        ],
+        "choose_two": [
+          {
+            "code": "01:920:360",
+            "name": "Computational Social Science"
+          },
+          {
+            "code": "01:790:391",
+            "name": "Data Science for Political Science"
+          },
+          {
+            "code": "04:189:310",
+            "name": "Information Systems"
+          },
+          {
+            "code": "01:450:330",
+            "name": "Geographical Research Methods"
+          }
+        ]
+      }
+    },
+    "declaration": "Must complete Data 101 and Statistical Inference to declare.",
+    "gpa_requirement": "Must maintain 2.0 GPA in major courses."
+  }
+}

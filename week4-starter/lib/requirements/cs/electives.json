@@ -1,0 +1,245 @@
+{
+  "source_url": "https://www.cs.rutgers.edu/academics/undergraduate/electives",
+  "categories": {
+    "computer_science": [
+      {
+        "code": "01:198:210",
+        "name": "Data Management for Data Science"
+      },
+      {
+        "code": "01:198:213",
+        "name": "Software Methodology"
+      },
+      {
+        "code": "01:198:214",
+        "name": "Systems Programming"
+      },
+      {
+        "code": "01:198:314",
+        "name": "Principles of Programming Languages"
+      },
+      {
+        "code": "01:198:323",
+        "name": "Numerical Analysis and Computing"
+      },
+      {
+        "code": "01:198:324",
+        "name": "Numerical Methods"
+      },
+      {
+        "code": "01:198:334",
+        "name": "Introduction to Imaging and Multimedia"
+      },
+      {
+        "code": "01:198:336",
+        "name": "Principles of Information and Data Management"
+      },
+      {
+        "code": "01:198:352",
+        "name": "Internet Technology"
+      },
+      {
+        "code": "01:198:411",
+        "name": "Computer Architecture II"
+      },
+      {
+        "code": "01:198:415",
+        "name": "Compilers"
+      },
+      {
+        "code": "01:198:416",
+        "name": "Operating Systems Design"
+      },
+      {
+        "code": "01:198:417",
+        "name": "Distributed Systems: Concepts and Design"
+      },
+      {
+        "code": "01:198:419",
+        "name": "Computer Security"
+      },
+      {
+        "code": "01:198:424",
+        "name": "Modeling and Simulation of Continuous Systems"
+      },
+      {
+        "code": "01:198:425",
+        "name": "Brain-Inspired Computing"
+      },
+      {
+        "code": "01:198:428",
+        "name": "Introduction to Computer Graphics"
+      },
+      {
+        "code": "01:198:431",
+        "name": "Software Engineering"
+      },
+      {
+        "code": "01:198:437",
+        "name": "Database Systems Implementation"
+      },
+      {
+        "code": "01:198:439",
+        "name": "Introduction to Data Science"
+      },
+      {
+        "code": "01:198:440",
+        "name": "Introduction to Artificial Intelligence"
+      },
+      {
+        "code": "01:198:442",
+        "name": "Topics in Computer Science"
+      },
+      {
+        "code": "01:198:443",
+        "name": "Topics in Computer Science"
+      },
+      {
+        "code": "01:198:444",
+        "name": "Topics in Computer Science"
+      },
+      {
+        "code": "01:198:445",
+        "name": "Topics in Computer Science"
+      },
+      {
+        "code": "01:198:452",
+        "name": "Formal Languages and Automata"
+      },
+      {
+        "code": "01:198:460",
+        "name": "Introduction to Computational Robotics"
+      },
+      {
+        "code": "01:198:461",
+        "name": "Machine Learning Principles"
+      },
+      {
+        "code": "01:198:462",
+        "name": "Introduction to Deep Learning"
+      },
+      {
+        "code": "01:198:493",
+        "name": "Independent Study in Computer Science"
+      },
+      {
+        "code": "01:198:494",
+        "name": "Independent Study in Computer Science"
+      }
+    ],
+    "electrical_engineering": [
+      {
+        "code": "14:332:376",
+        "name": "Virtual Reality"
+      },
+      {
+        "code": "14:332:423",
+        "name": "Telecommunication Networks"
+      },
+      {
+        "code": "14:332:424",
+        "name": "Introduction to Information and Network Security"
+      },
+      {
+        "code": "14:332:443",
+        "name": "Machine Learning for Engineers"
+      },
+      {
+        "code": "14:332:451",
+        "name": "Introduction to Parallel and Distributed Computing"
+      },
+      {
+        "code": "14:332:452",
+        "name": "Software Engineering"
+      },
+      {
+        "code": "14:332:453",
+        "name": "Mobile App Engineering and User Experience"
+      },
+      {
+        "code": "14:332:456",
+        "name": "Network-Centric Programming"
+      },
+      {
+        "code": "14:332:472",
+        "name": "Robotics and Computer Vision"
+      }
+    ],
+    "mathematics": [
+      {
+        "code": "01:640:338",
+        "name": "Discrete and Probabilistic Models in Biology"
+      },
+      {
+        "code": "01:640:348",
+        "name": "Cryptography"
+      },
+      {
+        "code": "01:640:354",
+        "name": "Linear Optimization"
+      },
+      {
+        "code": "01:640:428",
+        "name": "Graph Theory"
+      },
+      {
+        "code": "01:640:454",
+        "name": "Combinatorial Theory"
+      },
+      {
+        "code": "01:640:461",
+        "name": "Mathematical Logic and Foundations of Mathematics"
+      }
+    ],
+    "philosophy": [
+      {
+        "code": "01:730:315",
+        "name": "Applied Symbolic Logic"
+      },
+      {
+        "code": "01:730:407",
+        "name": "Intermediate Logic I"
+      },
+      {
+        "code": "01:730:408",
+        "name": "Intermediate Logic II"
+      },
+      {
+        "code": "01:730:329",
+        "name": "Minds, Machines, & Persons"
+      },
+      {
+        "code": "01:730:424",
+        "name": "The Logic of Decision"
+      }
+    ],
+    "linguistics": [
+      {
+        "code": "01:615:441",
+        "name": "Linguistics and Cognitive Science"
+      }
+    ],
+    "statistics": [
+      {
+        "code": "01:960:384",
+        "name": "Intermediate Statistical Analysis"
+      },
+      {
+        "code": "01:960:463",
+        "name": "Regression Methods"
+      },
+      {
+        "code": "01:960:476",
+        "name": "Introduction to Sampling"
+      },
+      {
+        "code": "01:960:486",
+        "name": "Computing and Graphics in Applied Statistics"
+      }
+    ]
+  },
+  "notes": [
+    "At most one 493/494 Independent Study can count as an elective.",
+    "01:615:441 requires 01:615:201 as a prerequisite."
+  ]
+}
