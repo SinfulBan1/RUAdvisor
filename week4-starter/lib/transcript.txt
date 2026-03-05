@@ -1,0 +1,60 @@
+RECORD OF: MAXWELL P BOYCE
+STUDENT NUMBER: 236009619
+RECORD DATE: 03/04/26
+
+TRANSFER COURSES
+MERCER COUNTY CMTY COLLEGE
+Fall 2022
+  CALCULUS I                         TR   T01   EC    01    4.0        T
+Fall 2023
+  INTRO TO PHILOSOPHY                01   730   103   01    3.0        T
+Spring 2024
+  ENGLISH COMPOSITION II             01   355   101   01    3.0        T
+  INTRO TO BUSINESS                  TR   T01   EC    01    3.0        T
+  TOTAL TRANSFER CREDITS:                                  13.0
+
+Fall 2024 SCHOOL OF ARTS AND SCIENCES
+MAJOR: UNSPECIFIED (MATRICULATING)
+CLASS: 28
+  PRECALC PT 1 WKSHOP               01   640   011   35    2.0    E   B
+  PRECALC PART 1                     01   640   111   05    2.0        B
+  GENERAL PSYCHOLOGY                 01   830   101   01    3.0        A
+  INTRO TO SOCIOLOGY                 01   920   101   12    3.0        B+
+  INFO TECH& INFORMATN               04   189   103   03    3.0        A
+  TOTAL CREDITS ATTEMPTED:                                 13.0
+DEGREE CREDITS EARNED: 24.0    TERM AVG: 3.682    CUMULATIVE AVG: 3.682
+
+Spring 2025 SCHOOL OF ARTS AND SCIENCES
+MAJOR: UNSPECIFIED (MATRICULATING)
+CLASS: 28                                                    DEANS LIST
+  LANG,CULTURE,SOCIETY               01   070   108   01    3.0        B+
+  GREEK CIVILIZATION                  01   190   205   01    3.0        B+
+  PRECALC PT 2 WKSHOP               01   640   012   01    2.0    E   A
+  PRECALC PART 2                     01   640   112   11    2.0        A
+  PUBLIC SPEAKING                    04   192   380   05    3.0        A
+  IT FUNDAMENTALS                    04   547   201   04    3.0        A
+  TOTAL CREDITS ATTEMPTED:                                 16.0
+DEGREE CREDITS EARNED: 38.0    TERM AVG: 3.786    CUMULATIVE AVG: 3.740
+
+Fall 2025 SCHOOL OF ARTS AND SCIENCES
+MAJOR: UNSPECIFIED (MATRICULATING)
+CLASS: 28                                                    DEANS LIST
+  INTRO COMPUTER SCI                 01   198   111   S9    4.0        A
+  CALC I MATH/PHYS                   01   640   151   17    4.0        B
+  GENERAL PHYSICS                    01   750   203   07    3.0        B
+  GENERAL PHYSICS LAB                01   750   205   16    1.0        A
+  INTRO GEN,RACE,SEXUA               01   988   101   04    3.0        A
+  TOTAL CREDITS ATTEMPTED:                                 15.0
+DEGREE CREDITS EARNED: 53.0    TERM AVG: 3.533    CUMULATIVE AVG: 3.663
+
+Spring 2026 SCHOOL OF ARTS AND SCIENCES
+MAJOR: UNSPECIFIED (MATRICULATING)
+CLASS: 28
+  DATA STRUCTURES                    01   198   112   44    4.0
+  INTR DISCRET STRCT I               01   198   205   01    4.0
+  INTRO LINEAR ALGEBRA               01   640   250   C1    3.0
+  GENERAL PHYSICS                    01   750   204   05    3.0
+  GENERAL PHYSICS LAB                01   750   206   32    1.0
+  TOTAL CREDITS ATTEMPTED:                                 15.0
+
+*** END OF TRANSCRIPT ***
