@@ -28,3 +28,5 @@ args = "cd week4-starter/ && python3 main.py"
 outputType = "console"
 
 [nix]
+[agent]
+expertMode = true
