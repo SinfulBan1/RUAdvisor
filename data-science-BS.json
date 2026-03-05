@@ -1,0 +1,86 @@
+{
+  "major_name": "Data Science",
+  "degree_type": "BS",
+  "requirements": [
+    {
+      "section_name": "Data Literacy",
+      "requirement_type": "pick_one",
+      "courses": [
+        { "id": "01:198:142", "name": "DATA 101" },
+        { "id": "01:960:142", "name": "DATA 101" }
+      ]
+    },
+    {
+      "section_name": "Statistical Inference",
+      "requirement_type": "pick_one",
+      "courses": [
+        { "id": "01:960:291", "name": "Statistical Inference for Data Science" },
+        { "id": "01:960:212", "name": "Statistics II" },
+        { "id": "01:960:384", "name": "Intermediate Statistical Analysis" },
+        { "id": "33:136:385", "name": "Statistical Methods in Business" }
+      ]
+    },
+    {
+      "section_name": "Data Management",
+      "requirement_type": "pick_one",
+      "courses": [
+        { "id": "01:198:210", "name": "Data Management for Data Science" },
+        { "id": "01:960:295", "name": "Data Management and Wrangling with R" },
+        { "id": "04:547:221", "name": "Fundamentals of Data Curation and Management" }
+      ]
+    },
+    {
+      "section_name": "Calculus I",
+      "requirement_type": "pick_one",
+      "courses": [
+        { "id": "01:640:135", "name": "Calculus I for the Life and Social Sciences" },
+        { "id": "01:640:151", "name": "Calculus I for Mathematical and Physical Sciences" }
+      ]
+    },
+    {
+      "section_name": "Linear Algebra",
+      "requirement_type": "mandatory_all",
+      "courses": [
+        { "id": "01:640:250", "name": "Introductory Linear Algebra" }
+      ]
+    },
+    {
+      "section_name": "Data in Context",
+      "requirement_type": "mandatory_all",
+      "courses": [
+        { "id": "04:189:220", "name": "Data in Context" }
+      ]
+    },
+    {
+      "section_name": "Principles of Information and Data Management",
+      "requirement_type": "mandatory_all",
+      "courses": [
+        { "id": "01:198:336", "name": "Principles of Information and Data Management" }
+      ]
+    },
+    {
+      "section_name": "Data Science CS Requirement Core",
+      "requirement_type": "mandatory_all",
+      "courses": [
+        { "id": "01:640:152", "name": "Calc 2" },
+        { "id": "01:640:251", "name": "Multivariable Calc 3" },
+        { "id": "01:198:205", "name": "Introduction to Discrete Structures" },
+        { "id": "01:198:206", "name": "Introduction to Discrete Structures 2" },
+        { "id": "01:198:439", "name": "Introduction to Data Science" },
+        { "id": "01:198:111", "name": "Introduction to Computer Science" },
+        { "id": "01:198:112", "name": "Data Structures" },
+        { "id": "01:960:463", "name": "Regression Methods" },
+        { "id": "01:960:486", "name": "Applied Statistical Learning" },
+        { "id": "04:547:321", "name": "Information Visualization" }
+      ]
+    },
+    {
+      "section_name": "Machine Learning / Deep Learning Elective",
+      "requirement_type": "pick_one",
+      "courses": [
+        { "id": "01:198:461", "name": "Introduction to Machine Learning" },
+        { "id": "01:198:462", "name": "Introduction to Deep Learning" }
+      ]
+    }
+  ]
+}

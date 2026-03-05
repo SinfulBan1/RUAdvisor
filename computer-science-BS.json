@@ -1,0 +1,214 @@
+{
+  "major_name": "Computer Science",
+  "degree_type": "BS",
+  "requirements": [
+    {
+        "section_name": "Computer Science Core - Mandatory",
+        "requirement_type": "mandatory_all",
+        "courses": [
+        { 
+            "id": "01:198:111", 
+            "name": "Introduction to Computer Science", 
+            "prerequisites": ["01:640:115 or Placement in CALC1"] 
+            },
+            { 
+            "id": "01:198:112", 
+            "name": "Data Structures", 
+            "prerequisites": ["01:198:111", "01:640:151"] 
+            },
+            { 
+            "id": "01:198:205", 
+            "name": "Introduction to Discrete Structures", 
+            "prerequisites": ["01:198:111", "01:640:152"] 
+            },
+            { 
+            "id": "01:198:211", 
+            "name": "Computer Architecture", 
+            "prerequisites": ["01:198:112"] 
+            },
+            { 
+            "id": "01:198:344", 
+            "name": "Design and Analysis of Computer Algorithms", 
+            "prerequisites": ["01:198:112", "01:198:206"] 
+            }
+        ]
+    },
+    {
+      "section_name": "Computer Science Core Part 2 - Discrete II/Probability",
+      "requirement_type": "pick_one",
+      "courses": [
+        { "id": "01:198:206", "name": "Introduction to discrete structures 2" },
+        { "id": "01:640:477", "name": "Mathematical theory of probability" },
+        { "id": "14:332:226", "name": "Probability and random process" }
+      ]
+    },
+
+    {
+      "section_name": "Mathematics Core",
+      "requirement_type": "mandatory_all_sections",
+      "sub_sections": [
+        {
+          "sub_section_name": "Calculus 1 Section",
+          "requirement_type": "pick_one",
+          "courses": [
+            { "id": "01:640:151", "name": "Calculus I for Math and Physical Sciences" },
+            { "id": "01:640:135", "name": "Calculus I for Life and Social Sciences" },
+            { "id": "01:640:153", "name": "Honors Calculus I" },
+            { "id": "01:640:191", "name": "Honors Math/Phys Calculus I" }
+          ]
+        },
+        {
+          "sub_section_name": "Calculus 2 Section",
+          "requirement_type": "pick_one",
+          "courses": [
+            { "id": "01:640:152", "name": "Calculus II for Math and Physical Sciences" },
+            { "id": "01:640:154", "name": "Honors Calculus II" }
+          ]
+        },
+        {
+          "sub_section_name": "Linear Algebra Section",
+          "requirement_type": "pick_one",
+          "courses": [
+            { "id": "01:640:250", "name": "Introductory Linear Algebra" }
+          ]
+        }
+      ]
+    },
+    
+    {
+      "section_name": "Computer Science Electives",
+      "requirement_type": "pick_n",
+      "n_required": 7,
+      "notes": "5 must be from Computer Science electives",
+      "courses": [
+        { "id": "01:198:210", "name": "Data Management for Data Science" },
+        { "id": "01:198:213", "name": "Software Methodology" },
+        { "id": "01:198:214", "name": "Systems Programming" },
+        { "id": "01:198:314", "name": "Principles of Programming Languages" },
+        { "id": "01:198:323", "name": "Numerical Analysis and Computing" },
+        { "id": "01:198:324", "name": "Numerical Methods" },
+        { "id": "01:198:334", "name": "Introduction to Imaging and Multimedia" },
+        { "id": "01:198:336", "name": "Principles of Information and Data Management" },
+        { "id": "01:198:345", "name": "Algorithms in Society" },
+        { "id": "01:198:352", "name": "Internet Technology" },
+        { "id": "01:198:411", "name": "Computer Architecture II" },
+        { "id": "01:198:415", "name": "Compilers" },
+        { "id": "01:198:416", "name": "Operating Systems Design" },
+        { "id": "01:198:417", "name": "Distributed Systems: Concepts and Design" },
+        { "id": "01:198:419", "name": "Computer Security" },
+        { "id": "01:198:424", "name": "Modeling and Simulation of Continuous Systems" },
+        { "id": "01:198:425", "name": "Brain-inspired Computing" },
+        { "id": "01:198:428", "name": "Introduction to Computer Graphics" },
+        { "id": "01:198:431", "name": "Software Engineering" },
+        { "id": "01:198:437", "name": "Database Systems Implementation" },
+        { "id": "01:198:439", "name": "Introduction to Data Science" },
+        { "id": "01:198:440", "name": "Introduction to Artificial Intelligence" },
+        { "id": "01:198:442", "name": "Topics in Computer Science" },
+        { "id": "01:198:443", "name": "Topics in Computer Science" },
+        { "id": "01:198:444", "name": "Topics in Computer Science" },
+        { "id": "01:198:452", "name": "Formal Languages and Automata" },
+        { "id": "01:198:460", "name": "Introduction to Computational Robotics" },
+        { "id": "01:198:461", "name": "Machine Learning Principles" },
+        { "id": "01:198:462", "name": "Introduction to Deep Learning" },
+        { "id": "01:198:463", "name": "Design and Analysis of Randomized Algorithms" },
+        { "id": "01:615:441", "name": "Linguistics and Cognitive Science" },
+        { "id": "01:640:338", "name": "Discrete and Probabilistic Models in Biology" },
+        { "id": "01:640:339", "name": "Mathematical Models in the Social Sciences" },
+        { "id": "01:640:348", "name": "Cryptography" },
+        { "id": "01:640:354", "name": "Linear Optimization" },
+        { "id": "01:640:355", "name": "Game Theory" },
+        { "id": "01:640:424", "name": "Stochastic Models in Operations Research" },
+        { "id": "01:640:428", "name": "Graph Theory" },
+        { "id": "01:640:453", "name": "Theory of Linear Optimization" },
+        { "id": "01:640:454", "name": "Combinatorics" },
+        { "id": "01:640:461", "name": "Mathematical Logic" },
+        { "id": "01:730:315", "name": "Applied Symbolic Logic" },
+        { "id": "01:730:329", "name": "Minds, Machines, and Persons" },
+        { "id": "01:730:407", "name": "Intermediate Logic I" },
+        { "id": "01:730:408", "name": "Intermediate Logic II" },
+        { "id": "01:730:424", "name": "The Logic of Decision" },
+        { "id": "01:960:384", "name": "Intermediate Statistical Analysis" },
+        { "id": "01:960:463", "name": "Regression Methods" },
+        { "id": "01:960:476", "name": "Introduction to Sampling" },
+        { "id": "01:960:486", "name": "Applied Statistical Learning" },
+        { "id": "14:332:376", "name": "Virtual Reality and Lab" },
+        { "id": "14:332:423", "name": "Telecommunication Networks" },
+        { "id": "14:332:424", "name": "Intro-Info & Netw Sec" },
+        { "id": "14:332:451", "name": "Parallel & Distributed Programming" },
+        { "id": "14:332:452", "name": "Introduction to Software Engineering" }
+      ]
+    },
+    {
+      "section_name": "Physics or Chem Core",
+      "requirement_type": "pick_one",
+      "courses": [
+        {
+          "group_name": "Physics Set 1",
+          "requirement_type": "mandatory_all",
+          "courses": [
+            { "id": "01:750:271", "name": "Honors Physics I" },
+            { "id": "01:750:272", "name": "Honors Physics II" },
+            { "id": "01:750:275", "name": "Classical Physics Lab I" },
+            { "id": "01:750:276", "name": "Classical Physics Lab II" }
+          ]
+        },
+        {
+          "group_name": "Physics Set 2",
+          "requirement_type": "mandatory_all",
+          "courses": [
+            { "id": "01:750:203", "name": "General Physics I" },
+            { "id": "01:750:204", "name": "General Physics II" },
+            { "id": "01:750:205", "name": "General Physics Lab I" },
+            { "id": "01:750:206", "name": "General Physics Lab II" }
+          ]
+        },
+        {
+          "group_name": "Physics Set 3",
+          "requirement_type": "mandatory_all",
+          "courses": [
+            { "id": "01:750:123", "name": "Analytical Physics Ia" },
+            { "id": "01:750:124", "name": "Analytical Physics Ib" },
+            { "id": "01:750:227", "name": "Analytical Physics IIa" },
+            { "id": "01:750:229", "name": "Analytical Physics IIa Lab" }
+          ]
+        },
+        {
+          "group_name": "Chemistry Set 1",
+          "requirement_type": "mandatory_all",
+          "courses": [
+            { "id": "01:160:159", "name": "Gen Chem for Engineers I" },
+            { "id": "01:160:160", "name": "Gen Chem for Engineers II" },
+            { "id": "01:160:171", "name": "Introduction to Experimentation" }
+          ]
+        },
+        {
+          "group_name": "Chemistry Set 2",
+          "requirement_type": "mandatory_all",
+          "courses": [
+            { "id": "01:160:161", "name": "General Chemistry I" },
+            { "id": "01:160:162", "name": "General Chemistry II" },
+            { "id": "01:160:171", "name": "Introduction to Experimentation" }
+          ]
+        }
+      ]
+    },
+    {
+      "section_name": "Residency Requirements",
+      "requirement_type": "pick_n",
+      "n_required": 7,
+      "courses": [
+        { "id": "01:198:104", "name": "Great Ideas in Computer Science" },
+        { "id": "01:198:111", "name": "Introduction to Computer Science" },
+        { "id": "01:198:112", "name": "Data Structures" },
+        { "id": "01:198:205", "name": "Introduction to Discrete Structures" },
+        { "id": "01:198:206", "name": "Introduction to Discrete Structures II" },
+        { "id": "01:198:211", "name": "Computer Architecture" },
+        { "id": "01:198:213", "name": "Software Methodology" },
+        { "id": "01:198:214", "name": "Systems Programming" },
+        { "id": "01:198:310", "name": "Data Science Capstone Project" },
+        { "id": "01:198:344", "name": "Design and Analysis of Computer Algorithms" },
+        { "id": "01:198:495", "name": "Computer Science Honors Capstone Program" }
+      ]
+    }
+  ]
+}
