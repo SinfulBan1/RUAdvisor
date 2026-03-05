@@ -413,13 +413,16 @@ lookup_professor_tool = {
     "type": "function",
     "function": {
         "name": "lookup_professor",
-        "description": "Look up a Rutgers University professor on Rate My Professor by name. Returns their rating, difficulty, department, number of reviews, and would-take-again percentage.",
+        "description":
+        "Look up a Rutgers University professor on Rate My Professor by name. Returns their rating, difficulty, department, number of reviews, and would-take-again percentage.",
         "parameters": {
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string",
-                    "description": "The professor's name to search for, e.g. 'Sesh Venugopal' or 'Venugopal'"
+                    "type":
+                    "string",
+                    "description":
+                    "The professor's name to search for, e.g. 'Sesh Venugopal' or 'Venugopal'"
                 }
             },
             "required": ["name"]
@@ -507,6 +510,9 @@ def ask_multi_tool(question, tools, max_retries=3):
 print("=" * 60)
 print("Professor Lookup Test")
 print("=" * 60)
-ask_multi_tool("What are the ratings for Professor Sesh Venugopal at Rutgers?", all_tools)
-ask_multi_tool("Who is a better professor for Computer Science at Rutgers - Fatemeh Hafizi or Arnold Lau?", all_tools)
+ask_multi_tool("What are the ratings for Professor Sesh Venugopal at Rutgers?",
+               all_tools)
+ask_multi_tool(
+    "Who is a better professor for Computer Science at Rutgers - Fatemeh Hafizi or Arnold Lau?",
+    all_tools)
 print()
