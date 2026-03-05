@@ -507,12 +507,72 @@ def ask_multi_tool(question, tools, max_retries=3):
 # =============================================
 # Professor Lookup Test
 # =============================================
+# print("=" * 60)
+# print("Professor Lookup Test")
+# print("=" * 60)
+# ask_multi_tool("What are the ratings for Professor Sesh Venugopal at Rutgers?",
+#                all_tools)
+# ask_multi_tool(
+#     "Who is a better professor for Computer Science at Rutgers - Fatemeh Hafizi or Arnold Lau?",
+#     all_tools)
+# print()
+
+# =============================================
+# Double Major Path Planning
+# =============================================
 print("=" * 60)
-print("Professor Lookup Test")
+print("Double Major Path Planning")
 print("=" * 60)
-ask_multi_tool("What are the ratings for Professor Sesh Venugopal at Rutgers?",
-               all_tools)
+
+import os
+transcript_path = os.path.join(os.path.dirname(__file__), "lib", "transcript.txt")
+with open(transcript_path, "r") as f:
+    transcript_text = f.read()
+
+professors_path = os.path.join(os.path.dirname(__file__), "lib", "rutgers_professors.json")
+with open(professors_path, "r") as f:
+    import json as _json
+    professors_data = _json.load(f)
+
+cs_ds_professors = [
+    p for p in professors_data
+    if p["department"] in ("Computer Science", "Statistics", "Mathematics",
+                           "Information Tech. & Informatics", "Data Science")
+    and p["num_ratings"] > 0
+]
+cs_ds_professors.sort(key=lambda p: p["avg_rating"], reverse=True)
+top_professors_text = "\n".join(
+    f"{p['first_name']} {p['last_name']} | {p['department']} | "
+    f"Rating: {p['avg_rating']}/5 | Difficulty: {p['avg_difficulty']}/5 | "
+    f"Reviews: {p['num_ratings']} | Would Take Again: {p['would_take_again_pct']:.1f}%"
+    for p in cs_ds_professors[:50]
+)
+
 ask_multi_tool(
-    "Who is a better professor for Computer Science at Rutgers - Fatemeh Hafizi or Arnold Lau?",
-    all_tools)
+    f"""I'm a student at Rutgers University - New Brunswick and I want to double major in
+Computer Science (CS) and Data Science (DS). Based on my transcript below, figure out
+what courses I've already completed and what I still need.
+
+Here are the Rutgers requirements:
+- CS major requires: Intro to CS (198:111), Data Structures (198:112), Discrete Structures I (198:205),
+  Computer Architecture (198:211), Systems Programming (198:214), Intro to AI (198:213) or
+  Design & Analysis of Algorithms (198:344), Linear Algebra (640:250), Calculus I (640:151),
+  Calculus II (640:152), plus 3 CS electives at 300+ level.
+- Data Science major requires: Intro to CS (198:111), Data Structures (198:112),
+  Intro to Data Science (198:142), Data Management (198:210), Regression Methods (960:401),
+  Statistical Computing (960:467), Calculus I (640:151), Calculus II (640:152),
+  Linear Algebra (640:250), Probability & Statistics (960:381), plus 2 DS electives.
+
+Identify which courses overlap and count toward BOTH majors at once. Then recommend the
+fastest semester-by-semester plan to finish both majors, considering I'm currently in
+Spring 2026. For any required course, look up the professor ratings and suggest the
+highest-rated professor.
+
+MY TRANSCRIPT:
+{transcript_text}
+
+TOP RATED PROFESSORS IN RELEVANT DEPARTMENTS:
+{top_professors_text}""",
+    all_tools
+)
 print()
