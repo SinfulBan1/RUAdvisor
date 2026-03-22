@@ -1,0 +1,234 @@
+{
+  "terms": [
+    {
+      "term_name": "Fall 2024",
+      "courses": [
+        {
+          "subject": "640",
+          "course_number": "011",
+          "title": "PRECALC PT 1 WKSHOP",
+          "credits": 2.0,
+          "grade": "B",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": true,
+          "repeat_flag": true
+        },
+        {
+          "subject": "640",
+          "course_number": "111",
+          "title": "PRECALC PART 1",
+          "credits": 2.0,
+          "grade": "B",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "830",
+          "course_number": "101",
+          "title": "GENERAL PSYCHOLOGY",
+          "credits": 3.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "920",
+          "course_number": "101",
+          "title": "INTRO TO SOCIOLOGY",
+          "credits": 3.0,
+          "grade": "B+",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "189",
+          "course_number": "103",
+          "title": "INFO TECH& INFORMATN",
+          "credits": 3.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        }
+      ]
+    },
+    {
+      "term_name": "Spring 2025",
+      "courses": [
+        {
+          "subject": "070",
+          "course_number": "108",
+          "title": "LANG,CULTURE,SOCIETY",
+          "credits": 3.0,
+          "grade": "B+",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "190",
+          "course_number": "205",
+          "title": "GREEK CIVILIZATION",
+          "credits": 3.0,
+          "grade": "B+",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "640",
+          "course_number": "012",
+          "title": "PRECALC PT 2 WKSHOP",
+          "credits": 2.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": true,
+          "repeat_flag": true
+        },
+        {
+          "subject": "640",
+          "course_number": "112",
+          "title": "PRECALC PART 2",
+          "credits": 2.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "192",
+          "course_number": "380",
+          "title": "PUBLIC SPEAKING",
+          "credits": 3.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "547",
+          "course_number": "201",
+          "title": "IT FUNDAMENTALS",
+          "credits": 3.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        }
+      ]
+    },
+    {
+      "term_name": "Fall 2025",
+      "courses": [
+        {
+          "subject": "198",
+          "course_number": "111",
+          "title": "INTRO COMPUTER SCI",
+          "credits": 4.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "640",
+          "course_number": "151",
+          "title": "CALC I MATH/PHYS",
+          "credits": 4.0,
+          "grade": "B",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "750",
+          "course_number": "203",
+          "title": "GENERAL PHYSICS",
+          "credits": 3.0,
+          "grade": "B",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "750",
+          "course_number": "205",
+          "title": "GENERAL PHYSICS LAB",
+          "credits": 1.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "988",
+          "course_number": "101",
+          "title": "INTRO GEN,RACE,SEXUA",
+          "credits": 3.0,
+          "grade": "A",
+          "counts_toward_gpa": true,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        }
+      ]
+    },
+    {
+      "term_name": "Spring 2026",
+      "courses": [
+        {
+          "subject": "198",
+          "course_number": "112",
+          "title": "DATA STRUCTURES",
+          "credits": 4.0,
+          "grade": null,
+          "counts_toward_gpa": false,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "198",
+          "course_number": "205",
+          "title": "INTR DISCRET STRCT I",
+          "credits": 4.0,
+          "grade": null,
+          "counts_toward_gpa": false,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "640",
+          "course_number": "250",
+          "title": "INTRO LINEAR ALGEBRA",
+          "credits": 3.0,
+          "grade": null,
+          "counts_toward_gpa": false,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "750",
+          "course_number": "204",
+          "title": "GENERAL PHYSICS",
+          "credits": 3.0,
+          "grade": null,
+          "counts_toward_gpa": false,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        },
+        {
+          "subject": "750",
+          "course_number": "206",
+          "title": "GENERAL PHYSICS LAB",
+          "credits": 1.0,
+          "grade": null,
+          "counts_toward_gpa": false,
+          "is_repeat_excluded": false,
+          "repeat_flag": false
+        }
+      ]
+    }
+  ]
+}

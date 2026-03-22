@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 TIMEOUT = 15
-BASE_DIR = os.path.join(os.path.dirname(__file__), "lib", "requirements")
+BASE_DIR = os.path.join(os.path.dirname(__file__), "lib", "Data", "SAS")
 
 def fetch_text(url):
     resp = requests.get(url, timeout=TIMEOUT, headers=HEADERS)

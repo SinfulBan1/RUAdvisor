@@ -262,7 +262,7 @@ _PROFESSORS_CACHE = None
 def _load_professors():
     global _PROFESSORS_CACHE
     if _PROFESSORS_CACHE is None:
-        path = os.path.join(os.path.dirname(__file__), "lib", "rutgers_professors.json")
+        path = os.path.join(os.path.dirname(__file__), "lib", "Data", "rutgers_professors.json")
         with open(path, "r") as f:
             _PROFESSORS_CACHE = json.load(f)
     return _PROFESSORS_CACHE
@@ -308,61 +308,72 @@ def lookup_professor(name: str) -> str:
 
 import os as _os
 
-_REQUIREMENTS_DIR = _os.path.join(_os.path.dirname(__file__), "lib", "requirements")
+_REQUIREMENTS_DIR = _os.path.join(_os.path.dirname(__file__), "lib", "Data", "SAS")
 _REQUIREMENTS_CACHE: Dict[str, dict] = {}
+_SAS_CORE_CACHE: list = []
+
+def _normalize(s: str) -> str:
+    return s.lower().strip().replace(" ", "").replace(".", "").replace("-", "")
 
 def _load_requirements():
-    if _REQUIREMENTS_CACHE:
+    if _REQUIREMENTS_CACHE or _SAS_CORE_CACHE:
         return
+    sas_core_dir = _os.path.join(_REQUIREMENTS_DIR, "SAS-CORE")
     for root, _dirs, files in _os.walk(_REQUIREMENTS_DIR):
-        for fname in files:
-            if fname.endswith(".json"):
-                fpath = _os.path.join(root, fname)
-                rel = _os.path.relpath(fpath, _REQUIREMENTS_DIR)
-                key = rel.replace(_os.sep, "/").replace(".json", "")
-                with open(fpath) as f:
-                    _REQUIREMENTS_CACHE[key] = json.load(f)
+        for fname in sorted(files):
+            if not fname.endswith(".json"):
+                continue
+            fpath = _os.path.join(root, fname)
+            with open(fpath) as f:
+                data = json.load(f)
+            if root == sas_core_dir:
+                _SAS_CORE_CACHE.append(data)
+            elif "major_name" in data and "degree_type" in data:
+                key = (_normalize(data["major_name"]), _normalize(data["degree_type"]))
+                _REQUIREMENTS_CACHE[key] = data
 
 def lookup_requirements(department: str, degree_type: str) -> str:
     _load_requirements()
 
-    dept_map = {
-        "computer science": "cs", "cs": "cs",
-        "data science": "ds", "ds": "ds",
-        "mathematics": "math", "math": "math",
-        "statistics": "stats", "stats": "stats",
+    dept_aliases = {
+        "cs": "computer science", "computerscience": "computer science",
+        "ds": "data science", "datascience": "data science",
+        "math": "mathematics", "mathematics": "mathematics",
+        "stats": "statistics", "statistics": "statistics",
+        "sascore": "sas core", "core": "sas core", "sas": "sas core", "sascorerequirements": "sas core",
     }
-    degree_map = {
-        "bs": "bs", "b.s.": "bs", "b.s": "bs", "bachelor of science": "bs",
-        "ba": "ba", "b.a.": "ba", "b.a": "ba", "bachelor of arts": "ba",
-        "minor": "minor",
-        "major": "major",
-        "electives": "electives",
+    deg_aliases = {
+        "bs": "bs", "bachelorofscience": "bs",
+        "ba": "ba", "bachelorofarts": "ba",
+        "major": "major", "minor": "minor",
+        "all": "all", "requirements": "all",
     }
 
-    dept_key = dept_map.get(department.lower().strip())
-    deg_key = degree_map.get(degree_type.lower().strip())
+    dept_norm = _normalize(department)
+    dept_resolved = dept_aliases.get(dept_norm, dept_norm)
+    deg_norm = _normalize(degree_type)
+    deg_resolved = deg_aliases.get(deg_norm, deg_norm)
 
-    if not dept_key:
-        available = ", ".join(sorted(set(dept_map.values())))
-        return f"Unknown department '{department}'. Available: {available}"
-    if not deg_key:
-        available = ", ".join(sorted(set(degree_map.values())))
-        return f"Unknown degree type '{degree_type}'. Available: {available}"
+    if dept_resolved == "sas core":
+        if not _SAS_CORE_CACHE:
+            return "SAS Core requirement files not found."
+        return json.dumps(_SAS_CORE_CACHE, indent=2)
 
-    lookup_key = f"{dept_key}/{deg_key}"
-    if lookup_key in _REQUIREMENTS_CACHE:
-        return json.dumps(_REQUIREMENTS_CACHE[lookup_key], indent=2)
+    key = (_normalize(dept_resolved), deg_resolved)
+    if key in _REQUIREMENTS_CACHE:
+        return json.dumps(_REQUIREMENTS_CACHE[key], indent=2)
 
-    if deg_key == "major":
-        for fallback in ["bs", "ba"]:
-            fallback_key = f"{dept_key}/{fallback}"
-            if fallback_key in _REQUIREMENTS_CACHE:
-                return json.dumps(_REQUIREMENTS_CACHE[fallback_key], indent=2)
+    if deg_resolved in ("major", "all"):
+        for fallback in ("bs", "ba"):
+            fkey = (_normalize(dept_resolved), fallback)
+            if fkey in _REQUIREMENTS_CACHE:
+                return json.dumps(_REQUIREMENTS_CACHE[fkey], indent=2)
 
-    available_keys = [k for k in _REQUIREMENTS_CACHE if k.startswith(dept_key + "/")]
-    available_types = [k.split("/")[1] for k in available_keys]
-    return f"No requirements found for {dept_key}/{deg_key}. Available for {dept_key}: {', '.join(available_types)}"
+    available = [f"{d}/{t}" for (d, t) in _REQUIREMENTS_CACHE]
+    return (
+        f"No requirements found for department='{department}', degree='{degree_type}'. "
+        f"Available: {', '.join(sorted(available))}; or use department='sas core' for SAS Core."
+    )
 
 
 TOOL_FUNCTIONS = {

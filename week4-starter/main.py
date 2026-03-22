@@ -548,7 +548,7 @@ print("=" * 60)
 import os
 import json as _json
 
-parsed_path = os.path.join(os.path.dirname(__file__), "lib", "parsed_transcript.json")
+parsed_path = os.path.join(os.path.dirname(__file__), "lib", "Data", "parsed_transcript.json")
 with open(parsed_path, "r") as f:
     parsed_transcript = _json.load(f)
 
@@ -565,7 +565,7 @@ for term in parsed_transcript["terms"]:
 completed_text = "\n".join(completed_courses)
 in_progress_text = "\n".join(in_progress_courses)
 
-professors_path = os.path.join(os.path.dirname(__file__), "lib", "rutgers_professors.json")
+professors_path = os.path.join(os.path.dirname(__file__), "lib", "Data", "rutgers_professors.json")
 with open(professors_path, "r") as f:
     professors_data = _json.load(f)
 
@@ -589,9 +589,8 @@ Computer Science (B.S.) and Data Science (B.S., Computer Science track). Based o
 and in-progress courses below, figure out what I still need.
 
 STEP 1: Use the lookup_requirements tool to fetch the official requirements for BOTH majors:
-  - Computer Science BS requirements
+  - Computer Science BS requirements (includes electives list inside)
   - Data Science BS requirements
-  - Computer Science electives list
 
 STEP 2: Compare my courses against both sets of requirements. Courses that appear in BOTH
 majors overlap and satisfy both at once. Identify ALL overlapping courses.

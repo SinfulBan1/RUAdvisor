@@ -110,7 +110,7 @@ if __name__ == "__main__":
 
     professors = fetch_all_professors()
 
-    output_path = "lib/rutgers_professors.json"
+    output_path = "lib/Data/rutgers_professors.json"
     with open(output_path, "w") as f:
         json.dump(professors, f, indent=2)
 
