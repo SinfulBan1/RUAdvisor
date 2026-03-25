@@ -13,8 +13,9 @@ import os
 import json
 from openai import OpenAI
 
-client = OpenAI(base_url="https://api.groq.com/openai/v1",
-                api_key=os.environ["GROQ_API_KEY"])
+client = OpenAI(
+    base_url="https://api.groq.com/openai/v1", api_key=os.environ["GROQ_API_KEY"]
+)
 
 MODEL = "llama-3.3-70b-versatile"
 
@@ -38,21 +39,18 @@ calculator_tool = {
     "type": "function",
     "function": {
         "name": "calculate",
-        "description":
-        "Perform basic math. Use this for any arithmetic question.",
+        "description": "Perform basic math. Use this for any arithmetic question.",
         "parameters": {
             "type": "object",
             "properties": {
                 "expression": {
-                    "type":
-                    "string",
-                    "description":
-                    "A math expression to evaluate, e.g. '145 * 3.7'"
+                    "type": "string",
+                    "description": "A math expression to evaluate, e.g. '145 * 3.7'",
                 }
             },
-            "required": ["expression"]
-        }
-    }
+            "required": ["expression"],
+        },
+    },
 }
 
 # response = client.chat.completions.create(model=MODEL,
@@ -159,21 +157,18 @@ weather_tool = {
     "type": "function",
     "function": {
         "name": "get_weather",
-        "description":
-        "Get the current weather for a city. Use this when someone asks about weather or temperature.",
+        "description": "Get the current weather for a city. Use this when someone asks about weather or temperature.",
         "parameters": {
             "type": "object",
             "properties": {
                 "city": {
-                    "type":
-                    "string",
-                    "description":
-                    "The city name, e.g. 'New Brunswick' or 'New York'"
+                    "type": "string",
+                    "description": "The city name, e.g. 'New Brunswick' or 'New York'",
                 }
             },
-            "required": ["city"]
-        }
-    }
+            "required": ["city"],
+        },
+    },
 }
 
 all_tools = [calculator_tool, weather_tool]
@@ -185,14 +180,11 @@ def ask_with_tools(question, tools, max_retries=3):
 
     for attempt in range(max_retries):
         try:
-            response = client.chat.completions.create(model=MODEL,
-                                                      messages=[{
-                                                          "role":
-                                                          "user",
-                                                          "content":
-                                                          question
-                                                      }],
-                                                      tools=tools)
+            response = client.chat.completions.create(
+                model=MODEL,
+                messages=[{"role": "user", "content": question}],
+                tools=tools,
+            )
             message = response.choices[0].message
             break
         except Exception as e:
@@ -220,19 +212,15 @@ def ask_with_tools(question, tools, max_retries=3):
 
     # Send result back for final answer
     try:
-        followup = client.chat.completions.create(model=MODEL,
-                                                  messages=[{
-                                                      "role": "user",
-                                                      "content": question
-                                                  }, message, {
-                                                      "role":
-                                                      "tool",
-                                                      "tool_call_id":
-                                                      tool_call.id,
-                                                      "content":
-                                                      result
-                                                  }],
-                                                  tools=tools)
+        followup = client.chat.completions.create(
+            model=MODEL,
+            messages=[
+                {"role": "user", "content": question},
+                message,
+                {"role": "tool", "tool_call_id": tool_call.id, "content": result},
+            ],
+            tools=tools,
+        )
         print(f"A: {followup.choices[0].message.content}")
     except Exception as e:
         print(f"   Result from tool: {result}")
@@ -270,47 +258,44 @@ availability_tool = {
     "type": "function",
     "function": {
         "name": "check_availability",
-        "description":
-        "Check if a specific time on a given day is free or busy. Use this when someone asks if they have something scheduled at a particular time.",
+        "description": "Check if a specific time on a given day is free or busy. Use this when someone asks if they have something scheduled at a particular time.",
         "parameters": {
             "type": "object",
             "properties": {
                 "day": {
                     "type": "string",
-                    "description": "Day of the week, e.g. 'Monday', 'Tuesday'"
+                    "description": "Day of the week, e.g. 'Monday', 'Tuesday'",
                 },
                 "time": {
                     "type": "string",
-                    "description":
-                    "Time in 24-hour format, e.g. '14:00' for 2pm"
-                }
+                    "description": "Time in 24-hour format, e.g. '14:00' for 2pm",
+                },
             },
-            "required": ["day", "time"]
-        }
-    }
+            "required": ["day", "time"],
+        },
+    },
 }
 
 free_slot_tool = {
     "type": "function",
     "function": {
         "name": "first_free_slot",
-        "description":
-        "Find the earliest free time slot of a given duration on a specific day. Use this when someone wants to find open time in their schedule.",
+        "description": "Find the earliest free time slot of a given duration on a specific day. Use this when someone wants to find open time in their schedule.",
         "parameters": {
             "type": "object",
             "properties": {
                 "day": {
                     "type": "string",
-                    "description": "Day of the week, e.g. 'Monday', 'Tuesday'"
+                    "description": "Day of the week, e.g. 'Monday', 'Tuesday'",
                 },
                 "duration_minutes": {
                     "type": "integer",
-                    "description": "How many minutes the slot needs to be"
-                }
+                    "description": "How many minutes the slot needs to be",
+                },
             },
-            "required": ["day", "duration_minutes"]
-        }
-    }
+            "required": ["day", "duration_minutes"],
+        },
+    },
 }
 
 calendar_tools = [availability_tool, free_slot_tool]
@@ -348,115 +333,101 @@ parse_transcript_tool = {
     "type": "function",
     "function": {
         "name": "parse_transcript",
-        "description":
-        "Parse a raw university transcript text into structured data with terms and courses. Use this when given raw transcript text that needs to be parsed.",
+        "description": "Parse a raw university transcript text into structured data with terms and courses. Use this when given raw transcript text that needs to be parsed.",
         "parameters": {
             "type": "object",
             "properties": {
                 "raw_text": {
                     "type": "string",
-                    "description": "The raw transcript text to parse"
+                    "description": "The raw transcript text to parse",
                 }
             },
-            "required": ["raw_text"]
-        }
-    }
+            "required": ["raw_text"],
+        },
+    },
 }
 
 calculate_gpa_tool = {
     "type": "function",
     "function": {
         "name": "calculate_gpa",
-        "description":
-        "Calculate the GPA from a parsed transcript JSON string. Use this after parsing a transcript to compute the student's GPA.",
+        "description": "Calculate the GPA from a parsed transcript JSON string. Use this after parsing a transcript to compute the student's GPA.",
         "parameters": {
             "type": "object",
             "properties": {
                 "transcript_json": {
-                    "type":
-                    "string",
-                    "description":
-                    "A JSON string of the parsed transcript (output from parse_transcript)"
+                    "type": "string",
+                    "description": "A JSON string of the parsed transcript (output from parse_transcript)",
                 }
             },
-            "required": ["transcript_json"]
-        }
-    }
+            "required": ["transcript_json"],
+        },
+    },
 }
 
 reapply_repeat_policy_tool = {
     "type": "function",
     "function": {
         "name": "reapply_repeat_policy",
-        "description":
-        "Reapply the university repeat/exclusion policy to a parsed transcript. Courses with a repeat flag will be excluded from GPA calculation.",
+        "description": "Reapply the university repeat/exclusion policy to a parsed transcript. Courses with a repeat flag will be excluded from GPA calculation.",
         "parameters": {
             "type": "object",
             "properties": {
                 "transcript_json": {
-                    "type":
-                    "string",
-                    "description":
-                    "A JSON string of the parsed transcript to apply the repeat policy to"
+                    "type": "string",
+                    "description": "A JSON string of the parsed transcript to apply the repeat policy to",
                 }
             },
-            "required": ["transcript_json"]
-        }
-    }
+            "required": ["transcript_json"],
+        },
+    },
 }
 
 lookup_professor_tool = {
     "type": "function",
     "function": {
         "name": "lookup_professor",
-        "description":
-        "Look up a Rutgers University professor on Rate My Professor by name. Returns their rating, difficulty, department, number of reviews, and would-take-again percentage.",
+        "description": "Look up a Rutgers University professor on Rate My Professor by name. Returns their rating, difficulty, department, number of reviews, and would-take-again percentage.",
         "parameters": {
             "type": "object",
             "properties": {
                 "name": {
-                    "type":
-                    "string",
-                    "description":
-                    "The professor's name to search for, e.g. 'Sesh Venugopal' or 'Venugopal'"
+                    "type": "string",
+                    "description": "The professor's name to search for, e.g. 'Sesh Venugopal' or 'Venugopal'",
                 }
             },
-            "required": ["name"]
-        }
-    }
+            "required": ["name"],
+        },
+    },
 }
 
 lookup_requirements_tool = {
     "type": "function",
     "function": {
         "name": "lookup_requirements",
-        "description":
-        "Look up Rutgers University major or minor degree requirements. Returns the full structured requirements including required courses, electives, and policies.",
+        "description": "Look up Rutgers University major or minor degree requirements. Returns the full structured requirements including required courses, electives, and policies.",
         "parameters": {
             "type": "object",
             "properties": {
                 "department": {
                     "type": "string",
-                    "description":
-                    "The department name: 'Computer Science', 'Data Science', 'Mathematics', or 'Statistics'"
+                    "description": "The department name: 'Computer Science', 'Data Science', 'Mathematics', or 'Statistics'",
                 },
                 "degree_type": {
                     "type": "string",
-                    "description":
-                    "The degree type: 'BS', 'BA', 'minor', 'major', or 'electives'"
-                }
+                    "description": "The degree type: 'BS', 'BA', 'minor', 'major', or 'electives'",
+                },
             },
-            "required": ["department", "degree_type"]
-        }
-    }
+            "required": ["department", "degree_type"],
+        },
+    },
 }
 
 search_reddit_for_class_tool = {
     "type": "function",
     "function": {
         "name": "search_reddit_for_class",
-        "description":
-        "Search Reddit (r/rutgers) for posts about courses that satisfy TWO graduation requirements at once. "
+        "description": "Search Reddit (r/rutgers) for posts about courses that satisfy TWO graduation requirements at once. "
         "Returns the top posts and their top 3 comments. Use this when a student wants to know what real "
         "students say about a course that double-counts toward two different requirements (e.g., a CS elective "
         "that also satisfies SAS Core QR, or a course that counts for both CS and DS).",
@@ -465,24 +436,29 @@ search_reddit_for_class_tool = {
             "properties": {
                 "requirement_1": {
                     "type": "string",
-                    "description":
-                    "The first graduation requirement category, e.g. 'CS Core', 'DS Core', 'SAS Core R6', 'CS Elective', 'DS Mathematics'"
+                    "description": "The first graduation requirement category, e.g. 'CS Core', 'DS Core', 'SAS Core R6', 'CS Elective', 'DS Mathematics'",
                 },
                 "requirement_2": {
                     "type": "string",
-                    "description":
-                    "The second graduation requirement category that the course must ALSO satisfy, e.g. 'DS Core', 'SAS Core R6', 'DS Mathematics'"
-                }
+                    "description": "The second graduation requirement category that the course must ALSO satisfy, e.g. 'DS Core', 'SAS Core R6', 'DS Mathematics'",
+                },
             },
-            "required": ["requirement_1", "requirement_2"]
-        }
-    }
+            "required": ["requirement_1", "requirement_2"],
+        },
+    },
 }
 
 all_tools = [
-    calculator_tool, weather_tool, availability_tool, free_slot_tool,
-    calculate_gpa_tool, parse_transcript_tool, reapply_repeat_policy_tool,
-    lookup_professor_tool, lookup_requirements_tool, search_reddit_for_class_tool
+    calculator_tool,
+    weather_tool,
+    availability_tool,
+    free_slot_tool,
+    calculate_gpa_tool,
+    parse_transcript_tool,
+    reapply_repeat_policy_tool,
+    lookup_professor_tool,
+    lookup_requirements_tool,
+    search_reddit_for_class_tool,
 ]
 
 
@@ -495,9 +471,9 @@ def ask_multi_tool(question, tools, max_retries=3):
     for round_num in range(max_rounds):
         for attempt in range(max_retries):
             try:
-                response = client.chat.completions.create(model=MODEL,
-                                                          messages=messages,
-                                                          tools=tools)
+                response = client.chat.completions.create(
+                    model=MODEL, messages=messages, tools=tools
+                )
                 message = response.choices[0].message
                 break
             except Exception as e:
@@ -508,24 +484,20 @@ def ask_multi_tool(question, tools, max_retries=3):
                 return
 
         if not message.tool_calls:
-            print(f"\nA: {message.content}")
+            print(message.content)
             return
 
         messages.append(message)
         for tool_call in message.tool_calls:
             func_name = tool_call.function.name
             args = json.loads(tool_call.function.arguments)
-            print(f"   [{round_num + 1}] {func_name}({args})")
 
             func = TOOL_FUNCTIONS[func_name]
             result = func(**args)
-            print(f"       returned: {result}")
 
-            messages.append({
-                "role": "tool",
-                "tool_call_id": tool_call.id,
-                "content": result
-            })
+            messages.append(
+                {"role": "tool", "tool_call_id": tool_call.id, "content": result}
+            )
 
     print("(Reached max rounds without a final answer)")
 
@@ -576,7 +548,9 @@ print("=" * 60)
 import os
 import json as _json
 
-parsed_path = os.path.join(os.path.dirname(__file__), "lib", "Data", "parsed_transcript.json")
+parsed_path = os.path.join(
+    os.path.dirname(__file__), "lib", "Data", "parsed_transcript.json"
+)
 with open(parsed_path, "r") as f:
     parsed_transcript = _json.load(f)
 
@@ -586,21 +560,32 @@ for term in parsed_transcript["terms"]:
     for c in term["courses"]:
         entry = f"{c['subject']}:{c['course_number']} {c['title']}"
         if c["grade"]:
-            completed_courses.append(f"{entry} (Grade: {c['grade']}, {term['term_name']})")
+            completed_courses.append(
+                f"{entry} (Grade: {c['grade']}, {term['term_name']})"
+            )
         else:
             in_progress_courses.append(f"{entry} (In Progress, {term['term_name']})")
 
 completed_text = "\n".join(completed_courses)
 in_progress_text = "\n".join(in_progress_courses)
 
-professors_path = os.path.join(os.path.dirname(__file__), "lib", "Data", "rutgers_professors.json")
+professors_path = os.path.join(
+    os.path.dirname(__file__), "lib", "Data", "rutgers_professors.json"
+)
 with open(professors_path, "r") as f:
     professors_data = _json.load(f)
 
 cs_ds_professors = [
-    p for p in professors_data
-    if p["department"] in ("Computer Science", "Statistics", "Mathematics",
-                           "Information Tech. & Informatics", "Data Science")
+    p
+    for p in professors_data
+    if p["department"]
+    in (
+        "Computer Science",
+        "Statistics",
+        "Mathematics",
+        "Information Tech. & Informatics",
+        "Data Science",
+    )
     and p["num_ratings"] > 0
 ]
 cs_ds_professors.sort(key=lambda p: p["avg_rating"], reverse=True)
@@ -614,7 +599,7 @@ top_professors_text = "\n".join(
 ask_multi_tool(
     f"""I'm a student at Rutgers University - New Brunswick and I want to double major in
 Computer Science (B.S.) and Data Science (B.S., Computer Science track). Based on my completed
-and in-progress courses below, figure out what I still need.
+and in-progress courses below, figure out what I still need. I have attached my completed courses and in-progress courses.
 
 STEP 1: Use the lookup_requirements tool to fetch the official requirements for BOTH majors:
   - Computer Science BS requirements (includes electives list inside)
@@ -640,6 +625,6 @@ MY IN-PROGRESS COURSES (Spring 2026):
 
 TOP RATED PROFESSORS IN RELEVANT DEPARTMENTS:
 {top_professors_text}""",
-    all_tools
+    all_tools,
 )
 print()
