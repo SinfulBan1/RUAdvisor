@@ -464,8 +464,21 @@ all_tools = [
 
 def ask_multi_tool(question, tools, max_retries=3):
     """Handle questions that may require multiple tool calls."""
-    # print(f"\nQ: {question}")
-    messages = [{"role": "user", "content": question}]
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "You are an academic advisor for Rutgers University - New Brunswick. "
+                "You help students plan their course schedules, understand degree requirements, "
+                "check graduation progress, and make informed decisions about their academic path. "
+                "You have access to tools to look up official degree requirements, professor ratings, "
+                "transcript data, and community feedback from fellow Rutgers students on Reddit. "
+                "Always use the available tools to ground your advice in accurate, up-to-date information "
+                "before responding. Be specific, practical, and supportive."
+            )
+        },
+        {"role": "user", "content": question}
+    ]
 
     max_rounds = 10
     for round_num in range(max_rounds):
