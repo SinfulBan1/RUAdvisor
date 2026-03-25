@@ -1,0 +1,194 @@
+{
+  "description": "Mock Reddit posts from r/rutgers about courses that satisfy multiple graduation requirements simultaneously.",
+  "posts": [
+    {
+      "requirement_tags": ["CS Core", "DS Core"],
+      "course_id": "01:198:336",
+      "course_name": "Principles of Information and Data Management",
+      "subreddit": "rutgers",
+      "title": "198:336 (Principles of Data Management) counts for BOTH CS and DS major — underrated double-dip",
+      "score": 212,
+      "url": "https://www.reddit.com/r/rutgers/comments/zx9r4p/",
+      "body": "Just found out that 198:336 counts as a CS elective AND a DS core requirement at the same time. If you're doing the CS+DS double major like me, this is one of the easiest overlaps to exploit. The workload is manageable (two projects, a midterm, final) and the SQL + indexing content actually comes up in internship interviews. Highly recommend taking it early.",
+      "top_comments": [
+        {
+          "author": "scarlet_coder",
+          "score": 89,
+          "body": "Confirmed — I used it for both. Make sure you check with your advisor to get it approved as the DS Systems elective. Some advisors are strict about it but most let it slide if you phrase it right on the degree audit."
+        },
+        {
+          "author": "nb_swe_2025",
+          "score": 54,
+          "body": "The class is way better with Uli Kremer. He explains the theory behind B-trees and query optimization like you're actually going to use it, not just for the exam. Avoid sections that are purely assignment-graded with no lecture engagement."
+        },
+        {
+          "author": "ds_doublemajor_grind",
+          "score": 37,
+          "body": "Finished it last semester. Projects are group-based so find partners early — the second project (building a simple query engine) is 40% of your grade and not something you want to scramble on at the end."
+        }
+      ]
+    },
+    {
+      "requirement_tags": ["CS Core", "DS Core"],
+      "course_id": "01:198:336",
+      "course_name": "Principles of Information and Data Management",
+      "subreddit": "rutgers",
+      "title": "Is 198:336 worth it if I'm doing DS+CS double major? Already have SQL experience",
+      "score": 143,
+      "url": "https://www.reddit.com/r/rutgers/comments/yw2m88/",
+      "body": "I interned at a startup and know SQL pretty well. Is Principles of Data Management going to teach me anything new, or should I try to get credit for it and take something else? I still need it for the DS core and it appears on the CS elective list too.",
+      "top_comments": [
+        {
+          "author": "rutgers_cs_2024",
+          "score": 71,
+          "body": "Even with SQL experience, the course covers transaction management, indexing internals, NoSQL tradeoffs, and relational algebra — stuff that most bootcamp-level SQL knowledge skips. I'd still take it, especially since it double-counts."
+        },
+        {
+          "author": "transfer_cs_student",
+          "score": 48,
+          "body": "There's no CLEP or waiver option for it as far as I know. You'd still need to enroll. The good news is it's not super heavy — 4-5 hours a week outside of class if you already know SQL."
+        },
+        {
+          "author": "data_eng_hopeful",
+          "score": 29,
+          "body": "The database design section is legitimately useful. I used the ER diagram skills directly in a capstone project and my interviewer at Amazon mentioned B-trees during a system design question. Worth every hour."
+        }
+      ]
+    },
+    {
+      "requirement_tags": ["CS Elective", "DS Core"],
+      "course_id": "01:198:461",
+      "course_name": "Machine Learning Principles",
+      "subreddit": "rutgers",
+      "title": "198:461 Machine Learning counts as both a CS elective and DS core — worth it?",
+      "score": 287,
+      "url": "https://www.reddit.com/r/rutgers/comments/ml9t3c/",
+      "body": "Signed up for 198:461 this semester. I'm a CS+DS double major and my advisor confirmed it satisfies the CS elective requirement AND the DS Machine Learning core requirement simultaneously. This means I get two birds with one stone. Anyone have experience with how hard this class is? I've already taken linear algebra and intro stats.",
+      "top_comments": [
+        {
+          "author": "ml_rutgers_alum",
+          "score": 134,
+          "body": "If you have linear algebra and stats down, you'll be fine. The hardest part is the math — gradient descent, loss functions, regularization. Coding is in Python/sklearn so nothing scary there. The final project is where people either shine or struggle; pick a dataset you actually care about."
+        },
+        {
+          "author": "scarlet_grad_2023",
+          "score": 88,
+          "body": "This is probably the best double-dip course in the whole CS+DS overlap. ML is directly marketable, it satisfies both requirements, and the content is legitimately useful for industry. I got my first ML internship literally because of the final project in this class."
+        },
+        {
+          "author": "ece_crossover_student",
+          "score": 55,
+          "body": "Heads up: section matters a LOT. Some professors use heavy theory (you derive every update rule by hand on exams), others are more applied. Look up the professor on RMP before registering. Night and day difference."
+        }
+      ]
+    },
+    {
+      "requirement_tags": ["CS Elective", "DS Core"],
+      "course_id": "01:198:462",
+      "course_name": "Introduction to Deep Learning",
+      "subreddit": "rutgers",
+      "title": "198:462 Deep Learning — counts for CS elective and DS, but is it too hard for undergrads?",
+      "score": 178,
+      "url": "https://www.reddit.com/r/rutgers/comments/dv8wx1/",
+      "body": "Thinking about taking 198:462 Introduction to Deep Learning next fall. It shows up on both the CS elective list and DS advanced coursework. But I've heard it's brutal. Anyone done it as an undergrad without prior ML experience?",
+      "top_comments": [
+        {
+          "author": "deep_learning_survivor",
+          "score": 92,
+          "body": "Take 461 first. Deep Learning assumes you already know gradient descent, backprop basics, and basic numpy. If you go in cold it will feel like the professor is speaking another language. After 461, it's hard but totally doable."
+        },
+        {
+          "author": "grad_student_ta",
+          "score": 63,
+          "body": "The class is grad-level but open to undergrads. The grading curve is usually generous because of how mixed the audience is. If you put in the time on the homework (PyTorch is the framework), you'll be fine. Projects are the real learning — don't cut corners there."
+        },
+        {
+          "author": "cs_ds_senior_2024",
+          "score": 41,
+          "body": "Great double-dip if you can handle it. I put it on my resume as 'Deep Learning coursework' and it got me two more recruiter calls than before. The pain is temporary, the line item is permanent."
+        }
+      ]
+    },
+    {
+      "requirement_tags": ["SAS Core R6", "CS Core", "DS Core"],
+      "course_id": "01:640:151",
+      "course_name": "Calculus I for Mathematical and Physical Sciences",
+      "subreddit": "rutgers",
+      "title": "640:151 Calc I — satisfies SAS Core QR AND is required for CS and DS. Underrated triple requirement killer",
+      "score": 341,
+      "url": "https://www.reddit.com/r/rutgers/comments/calc1_rutgers/",
+      "body": "Shoutout to whoever designed the CS and DS curriculum. Calc I (640:151) satisfies your SAS Core Quantitative Reasoning requirement, is a prerequisite for basically every upper-level CS and DS course, and you have to take it anyway. It's the definition of a foundational course. Any tips for surviving it?",
+      "top_comments": [
+        {
+          "author": "math_tutor_nb",
+          "score": 156,
+          "body": "The Math Learning Center (MLC) in the Hill Center is genuinely free and the TAs are excellent. If you go to office hours + MLC + practice exams, there is almost no reason to fail. The problem is most students don't go until the week before the exam."
+        },
+        {
+          "author": "calculus_made_it",
+          "score": 98,
+          "body": "Professor makes a huge difference here. Some sections move at a completely different pace. Check RMP and look for whoever explains limits and derivatives from first principles rather than just making you memorize rules. You'll need intuition for Calc II and III."
+        },
+        {
+          "author": "cs_freshman_advice",
+          "score": 72,
+          "body": "Don't underestimate it because it's Calc I. Rutgers exams are harder than most calc courses at other schools — they test edge cases and proof-style reasoning even at the intro level. Proficiency test score plays a role in your placement, so take that seriously too."
+        }
+      ]
+    },
+    {
+      "requirement_tags": ["SAS Core R6", "DS Mathematics"],
+      "course_id": "01:640:250",
+      "course_name": "Introductory Linear Algebra",
+      "subreddit": "rutgers",
+      "title": "640:250 Linear Algebra counts for SAS Core QR AND DS Mathematics requirement — best scheduling move I made",
+      "score": 198,
+      "url": "https://www.reddit.com/r/rutgers/comments/linalg_ds_qr/",
+      "body": "Just got my degree audit back and 640:250 Linear Algebra is officially listed under BOTH my SAS Core QR (Quantitative Reasoning) requirement AND my Data Science BS Mathematics requirement. If you're a DS student who hasn't done degree planning carefully, this is a freebie — one class checks two boxes. The course itself is harder than Calc I but incredibly important for ML, stats, and basically everything in DS.",
+      "top_comments": [
+        {
+          "author": "linalg_evangelist",
+          "score": 87,
+          "body": "Legitimately one of the most useful courses in the entire math department if you care about data science or ML. Everything from PCA to neural network weight matrices comes back to linear algebra. Take it seriously, don't just grind through to pass."
+        },
+        {
+          "author": "rutgers_ds_junior",
+          "score": 61,
+          "body": "The proof component threw me off — I expected a computation-heavy course but there are proofs on every exam. Professor Woodward's sections tend to be more computation-focused if you want a slightly gentler intro. Chatfield's sections go deep into abstraction."
+        },
+        {
+          "author": "double_req_optimizer",
+          "score": 44,
+          "body": "Take it sophomore year alongside 198:206 Discrete Math II. The proof-writing skills transfer directly and you'll be one of the more prepared students in both classes. This combo unlocks basically every upper-level CS and DS course."
+        }
+      ]
+    },
+    {
+      "requirement_tags": ["SAS Core R6", "DS Mathematics"],
+      "course_id": "01:640:250",
+      "course_name": "Introductory Linear Algebra",
+      "subreddit": "rutgers",
+      "title": "How hard is 640:250 really? I need it for DS req AND it covers my QR core",
+      "score": 134,
+      "url": "https://www.reddit.com/r/rutgers/comments/linalg_difficulty/",
+      "body": "Registering for next semester and 640:250 Linear Algebra appears on both my DS math requirement list and my SAS Core Quantitative Reasoning list. Seems like a no-brainer to take it, but multiple people told me it's a GPA killer. How accurate is that?",
+      "top_comments": [
+        {
+          "author": "survived_250",
+          "score": 59,
+          "body": "It's not a GPA killer if you keep up. The material builds week-over-week though — miss one week and you're lost for three. Eigenvalues and vector spaces are where people fall off. Work through every problem set, not just the ones that are graded."
+        },
+        {
+          "author": "math_peer_tutor",
+          "score": 42,
+          "body": "The curve usually ends up somewhere around a B average. Median tends to be around 65-70% on exams, so don't panic if your raw score looks low. Exams are intentionally hard to differentiate students, but the final letter grades come out reasonably."
+        },
+        {
+          "author": "took_it_twice",
+          "score": 28,
+          "body": "Took it with a bad professor the first time and got crushed. Second time with a professor who used visualization tools (3Blue1Brown style explanations) and it clicked completely. Seriously, section selection is half the battle in this course."
+        }
+      ]
+    }
+  ]
+}

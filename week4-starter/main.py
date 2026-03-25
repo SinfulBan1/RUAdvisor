@@ -451,10 +451,38 @@ lookup_requirements_tool = {
     }
 }
 
+search_reddit_for_class_tool = {
+    "type": "function",
+    "function": {
+        "name": "search_reddit_for_class",
+        "description":
+        "Search Reddit (r/rutgers) for posts about courses that satisfy TWO graduation requirements at once. "
+        "Returns the top posts and their top 3 comments. Use this when a student wants to know what real "
+        "students say about a course that double-counts toward two different requirements (e.g., a CS elective "
+        "that also satisfies SAS Core QR, or a course that counts for both CS and DS).",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "requirement_1": {
+                    "type": "string",
+                    "description":
+                    "The first graduation requirement category, e.g. 'CS Core', 'DS Core', 'SAS Core R6', 'CS Elective', 'DS Mathematics'"
+                },
+                "requirement_2": {
+                    "type": "string",
+                    "description":
+                    "The second graduation requirement category that the course must ALSO satisfy, e.g. 'DS Core', 'SAS Core R6', 'DS Mathematics'"
+                }
+            },
+            "required": ["requirement_1", "requirement_2"]
+        }
+    }
+}
+
 all_tools = [
     calculator_tool, weather_tool, availability_tool, free_slot_tool,
     calculate_gpa_tool, parse_transcript_tool, reapply_repeat_policy_tool,
-    lookup_professor_tool, lookup_requirements_tool
+    lookup_professor_tool, lookup_requirements_tool, search_reddit_for_class_tool
 ]
 
 
@@ -595,7 +623,12 @@ STEP 1: Use the lookup_requirements tool to fetch the official requirements for 
 STEP 2: Compare my courses against both sets of requirements. Courses that appear in BOTH
 majors overlap and satisfy both at once. Identify ALL overlapping courses.
 
-STEP 3: Recommend the fastest semester-by-semester plan to finish both majors starting from
+STEP 3: For the most valuable double-counting courses (courses that satisfy both CS and DS
+requirements simultaneously), use the search_reddit_for_class tool to find what real Rutgers
+students say about them. Search using requirement pairs like "CS Core" + "DS Core" and
+"CS Elective" + "DS Core" to get community feedback.
+
+STEP 4: Recommend the fastest semester-by-semester plan to finish both majors starting from
 Fall 2026. For each remaining required course, look up the professor ratings and suggest
 the highest-rated professor.
 

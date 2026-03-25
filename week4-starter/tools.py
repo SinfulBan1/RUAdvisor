@@ -376,6 +376,79 @@ def lookup_requirements(department: str, degree_type: str) -> str:
     )
 
 
+_REDDIT_MOCK_PATH = _os.path.join(_os.path.dirname(__file__), "lib", "Data", "reddit_mock.json")
+_REDDIT_MOCK_CACHE = None
+
+def _load_reddit_mock():
+    global _REDDIT_MOCK_CACHE
+    if _REDDIT_MOCK_CACHE is None:
+        with open(_REDDIT_MOCK_PATH) as f:
+            _REDDIT_MOCK_CACHE = json.load(f)
+    return _REDDIT_MOCK_CACHE
+
+def _req_matches(tag: str, query: str) -> bool:
+    """Return True if query string loosely matches a requirement tag."""
+    t = tag.lower().replace(" ", "").replace("_", "").replace("-", "")
+    q = query.lower().replace(" ", "").replace("_", "").replace("-", "")
+    aliases = {
+        "cscore": ["cscore", "computerscience", "csrequirement", "csmandatory"],
+        "dcore": ["dcore", "datasciencecore", "dsrequirement", "dsmandatory", "dscore"],
+        "cselective": ["cselective", "cselectivecourse", "computerscience"],
+        "sasr6": ["sasr6", "qr", "quantitativereasoning", "quantitative", "sasr6quantitative"],
+        "dsmath": ["dsmathematics", "dsmaths", "dsmathematics", "dsmath"],
+    }
+    for canonical, alias_list in aliases.items():
+        if any(q == a for a in alias_list) or q == canonical:
+            if any(t == a for a in alias_list) or t == canonical:
+                return True
+    return q in t or t in q
+
+def search_reddit_for_class(requirement_1: str, requirement_2: str) -> str:
+    """
+    Search mock Reddit posts for courses that satisfy both graduation requirements.
+    Returns the top matching posts and their top 3 comments.
+    """
+    data = _load_reddit_mock()
+    posts = data["posts"]
+
+    matched = []
+    for post in posts:
+        tags = post["requirement_tags"]
+        r1_match = any(_req_matches(tag, requirement_1) for tag in tags)
+        r2_match = any(_req_matches(tag, requirement_2) for tag in tags)
+        if r1_match and r2_match:
+            matched.append(post)
+
+    if not matched:
+        available_tags = sorted({tag for p in posts for tag in p["requirement_tags"]})
+        return (
+            f"No Reddit posts found matching both '{requirement_1}' and '{requirement_2}'.\n"
+            f"Available requirement tags in mock data: {', '.join(available_tags)}"
+        )
+
+    matched.sort(key=lambda p: p["score"], reverse=True)
+    top_posts = matched[:3]
+
+    lines = [
+        f"Found {len(matched)} Reddit post(s) on r/rutgers about courses satisfying "
+        f"both '{requirement_1}' and '{requirement_2}':\n"
+    ]
+    for i, post in enumerate(top_posts, 1):
+        lines.append(f"{'='*60}")
+        lines.append(f"POST {i}: {post['title']}")
+        lines.append(f"Course: {post['course_id']} — {post['course_name']}")
+        lines.append(f"Upvotes: {post['score']}  |  r/{post['subreddit']}")
+        lines.append(f"URL: {post['url']}")
+        lines.append(f"\n{post['body']}\n")
+        lines.append("TOP COMMENTS:")
+        for j, comment in enumerate(post["top_comments"][:3], 1):
+            lines.append(f"  [{j}] u/{comment['author']} ({comment['score']} pts)")
+            lines.append(f"      {comment['body']}")
+        lines.append("")
+
+    return "\n".join(lines)
+
+
 TOOL_FUNCTIONS = {
     "calculate": calculate,
     "get_weather": get_weather,
@@ -386,4 +459,5 @@ TOOL_FUNCTIONS = {
     "reapply_repeat_policy": reapply_repeat_policy,
     "lookup_professor": lookup_professor,
     "lookup_requirements": lookup_requirements,
+    "search_reddit_for_class": search_reddit_for_class,
 }
